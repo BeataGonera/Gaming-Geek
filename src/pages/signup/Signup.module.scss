@@ -1,5 +1,6 @@
 $primary: #5E0060;
 $accents: #457960; 
+$error: #bd0000;
 
 
 @mixin signup-font{
@@ -47,7 +48,7 @@ $accents: #457960;
 
     .signupFormContainer{
         @include flex-column;
-        width: 393px;
+        min-width: 393px;
         height: 753px;
         background: white;
         border-radius: 20px 20px 0 0;
@@ -77,6 +78,12 @@ $accents: #457960;
                 background: white;
                 color: $accents;
                 border: 2px solid $accents;
+            }
+
+            .error{
+                color: $error;
+                font-weight: 300;
+                text-align: center;
             }
 
         }
