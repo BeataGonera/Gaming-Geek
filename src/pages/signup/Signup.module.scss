@@ -1,24 +1,95 @@
+$primary: #5E0060;
+$accents: #457960; 
+
+
+@mixin signup-font{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 64px;
+}
+
+@mixin flex-column{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@mixin button-style{
+    height: 40px;
+    border-radius: 8px;
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
 .backgroundPicture{
     display: flex;
     height: 100vh;
     width: 100vw;
     background-image: url('../../../public/background.webp');
     background-size: cover;
-    position: relative;
 
     .backgroundColor{
         background-color: rgb(94, 0, 96, 0.6);
         width: 100%;
         height: 100%;
+    }
+}
 
-        .signupFormContainer{
-            width: 393px;
-            height: 753px;
-            background: white;
-            border-radius: 20px 20px 0 0;
-            position: absolute;
-            bottom: 0px;
-            left: 10%;
+.signupPageContainer{
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    gap: 6%;
+    min-width: 90vw;
+
+    .signupFormContainer{
+        @include flex-column;
+        width: 393px;
+        height: 753px;
+        background: white;
+        border-radius: 20px 20px 0 0;
+        padding-top: 20px;
+
+        p{
+            font-weight: 600;
+        }
+
+        .divider{
+            width: 100%;
+        }
+
+        .formControl{
+            width: 100%;
+            gap: 10px;
+            padding: 30px;
+            padding-top: 50px;
+
+            .signupButton{
+                @include button-style;
+                background: $accents;
+                margin-top: 10px;
+            }
+
+            .signupButton:hover{
+                background: white;
+                color: $accents;
+                border: 2px solid $accents;
+            }
+
         }
     }
+
+    .leadTextContainer{
+        color: white;
+        
+        h1, h3{
+            @include signup-font;
+            margin-top: 0;
+            margin-bottom: 70px;
+        }  
+    }
+
 }
