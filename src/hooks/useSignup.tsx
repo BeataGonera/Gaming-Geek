@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { auth } from '../firebase/config'
+import { useAuthContext } from '../hooks/useAuthContext'
 
 type Signup = (email: string, password: string, displayName: string) => Promise<any>
 
@@ -7,6 +8,7 @@ export const useSignup = () => {
 
     const [error, setError] = useState<null | string>(null)
     const [isPending, setIsPending] = useState<null | boolean>(null)
+    const { dispatch } = useAuthContext() 
 
     const signup:Signup = async (email, password, displayName) => {
         setError(null)
@@ -22,6 +24,8 @@ export const useSignup = () => {
             await res.user?.updateProfile({ displayName })
 
             // dispatch login action
+
+            dispatch({type: 'LOGIN', payload: res.user})
 
             setIsPending(false)
             setError(null)
