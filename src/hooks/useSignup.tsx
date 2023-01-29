@@ -20,9 +20,11 @@ export const useSignup = () => {
             }
 
             await res.user?.updateProfile({ displayName })
+
+            // dispatch login action
+
             setIsPending(false)
             setError(null)
-
         }
         catch(error){
             console.log((error as Error).message)

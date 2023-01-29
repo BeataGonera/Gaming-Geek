@@ -4,6 +4,8 @@ import FormControl from '@mui/material/FormControl';
 import Divider from '@mui/material/Divider';
 import { useSignup } from '../../hooks/useSignup';
 import React, { useState } from 'react';
+import { useTheme } from '../../hooks/useTheme';
+
 
 
 export const Signup = () => {
@@ -12,6 +14,7 @@ export const Signup = () => {
     const [password, setPassword] = useState('')
     const [displayName, setDisplayName] = useState('')
     const {error, isPending, signup} = useSignup()
+    const { color } = useTheme()
 
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault()
@@ -63,6 +66,7 @@ export const Signup = () => {
                 <div className={styles.leadTextContainer}>
                     <h1>Gaming Geek</h1>
                     <h3>gaming event organiser <br/>for you.</h3>
+                    <button style={{background: `${color}`}}>Change color</button>
                 </div>
             </div>
         </div>
