@@ -14,7 +14,7 @@ export const Signup = () => {
     const [password, setPassword] = useState('')
     const [displayName, setDisplayName] = useState('')
     const {error, isPending, signup} = useSignup()
-    const { color } = useTheme()
+    const { color, changeColor } = useTheme()
 
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault()
@@ -66,7 +66,7 @@ export const Signup = () => {
                 <div className={styles.leadTextContainer}>
                     <h1>Gaming Geek</h1>
                     <h3>gaming event organiser <br/>for you.</h3>
-                    <button style={{background: `${color}`}}>Change color</button>
+                    <button style={{background: color}} onClick={()=>changeColor('pink')}>Change color</button>
                 </div>
             </div>
         </div>
