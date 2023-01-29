@@ -1,10 +1,17 @@
-import './App.scss';
-import { Signup } from './pages/signup/Signup';
+import './App.scss'
+import { Signup } from './pages/signup/Signup'
+import { Routes, Route } from 'react-router-dom'
+import { TablesPage } from './pages/TablesPage/TablesPage';
 
 function App() {
   return (
     <div className="App">
-      <Signup/>
+      
+   
+        <Routes>
+          <Route path='/' element={<Signup/>}/>
+          <Route path='/tables' element={<TablesPage/>}/>
+        </Routes> 
    
     </div>
   );

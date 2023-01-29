@@ -1,0 +1,17 @@
+$primary: #5E0060;
+$accents: #457960; 
+$error: #bd0000;
+$grey: #D9D9D9;
+
+.navbar{
+    width: 100vw;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid $grey;
+
+    .logoAndTitle{
+        font-family: 'Montserrat', sans-serif;
+        font-size: 24px;
+    }
+}

@@ -5,6 +5,7 @@ import Divider from '@mui/material/Divider';
 import { useSignup } from '../../hooks/useSignup';
 import React, { useState } from 'react';
 import { useTheme } from '../../hooks/useTheme';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -15,10 +16,12 @@ export const Signup = () => {
     const [displayName, setDisplayName] = useState('')
     const {error, isPending, signup} = useSignup()
     const { color, changeColor } = useTheme()
+    const navigate = useNavigate()
 
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault()
         signup(email, password, displayName)
+        navigate('/tables')
     }
 
     return ( 
