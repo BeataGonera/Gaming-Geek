@@ -12,7 +12,10 @@ interface AuthContextProviderProps{
     children: ReactElement;
 }
 
-const initialState = { user: null }
+const initialState = { 
+    user: null, 
+    authIsReady: false
+ }
 
 export const AuthContext = createContext<{
     dispatch: React.Dispatch<Action>;

@@ -7,8 +7,6 @@ export const NavBar = () => {
     const { logout } = useLogout()
     const { user } = useAuthContext()
 
-    console.log(user)
-
     return(
         <nav>
             <div className={styles.navbar}>
@@ -17,7 +15,7 @@ export const NavBar = () => {
                     <div>Gaming Geek</div>
                 </div>
                 <div className={styles.avatarAndLogoutButton}>
-                    {user && <div>Hello, {user.displayName}</div>}
+                    {user && <div>Signed in as {user.displayName}</div>}
                     <button onClick={logout}>Log out</button>
                 </div>
             </div>
