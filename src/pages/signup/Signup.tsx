@@ -69,7 +69,6 @@ export const Signup = () => {
                 <div className={styles.leadTextContainer}>
                     <h1>Gaming Geek</h1>
                     <h3>gaming event organiser <br/>for you.</h3>
-                    <button style={{background: color}} onClick={()=>changeColor('pink')}>Change color</button>
                 </div>
             </div>
         </div>

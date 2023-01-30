@@ -13,7 +13,10 @@ export const NavBar = () => {
     return(
         <nav>
             <div className={styles.navbar}>
-                <div className={styles.logoAndTitle}>Gaming Geek</div>
+                <div className={styles.logoAndTitle}>
+                    <img src='dice.webp' width='54px' height='54px'/>
+                    <div>Gaming Geek</div>
+                </div>
                 <div className={styles.avatarAndLogoutButton}>
                     <button onClick={logout}>Log out</button>
                 </div>

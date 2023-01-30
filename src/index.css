@@ -12,11 +12,12 @@ body {
   align-items: center;
   padding-left: 20px;
   border-radius: 20px 0 0 20px;
-  font-weight: 600;
+  font-weight: 200;
   font-size: 14px;
 }
 
 .active{
   color: #5E0060;
   background: white;
+  font-weight: 600;
 }

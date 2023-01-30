@@ -26,7 +26,7 @@ export const themeReducer = (state:any, action:any) => {
 export const ThemeProvider:FC<ThemeProviderProps> = ({children}) => {
 
     const [state, dispatch] = useReducer(themeReducer, {
-        color: 'blue'
+        color: '#5E0060'
     })
 
     const changeColor = (color:string) => {

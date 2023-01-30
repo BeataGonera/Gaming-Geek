@@ -1,8 +1,4 @@
-@mixin flex-column{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+@import '../../assets/sass/mixins.scss';
 
 .drawerContainer{
     height: 91vh;
@@ -15,7 +11,7 @@
     box-shadow: 20px -25px 24px -26px rgba(0, 0, 0, 0.30);
     
     .backgroundColor{
-        background-color: rgb(94, 0, 96, 0.8);
+        // background-color: rgb(94, 0, 96, 0.8);
         width: 100%;
         height: 100%;
         border-radius: 0 20px 0 0;
@@ -29,6 +25,21 @@
             padding-top: 150px;
             padding-left: 40px;
         }
-    }
-    
+
+        .themeButtons{
+            width: 100%;
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+
+            button{
+                width: 15px;
+                height: 15px;
+                border-radius: 25px;
+                border: none;
+                margin-right: 10px;
+                cursor: pointer;
+            }
+        }
+    }   
 }
