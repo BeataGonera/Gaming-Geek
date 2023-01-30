@@ -16,7 +16,10 @@ export const useLogout = () => {
 
         try{
             await auth.signOut()
-            dispatch({type: 'LOGOUT', })
+            dispatch({
+                type: 'LOGOUT',
+                payload: undefined
+            })
             
             setIsPending(false)
             setError(null)

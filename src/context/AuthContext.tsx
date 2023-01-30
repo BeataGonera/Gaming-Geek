@@ -1,25 +1,30 @@
 import { createContext, ReactElement, FC, useReducer } from "react"
 
-interface State{
-    user: string;
+type State = {user: null}
+
+type Action = {
+    type: string;
+    payload: any;
 }
+
 
 interface AuthContextProviderProps{
     children: ReactElement;
 }
 
-
-const initialState: State = { user: 'beata' }
+const initialState = { user: null }
 
 export const AuthContext = createContext<{
-    state: State;
-    dispatch: React.Dispatch<any>;
+    dispatch: React.Dispatch<Action>;
+    user:any;
 }>({
-    state: initialState,
-    dispatch: () => null
+    dispatch: () => null,
+    user: null
 })
 
-export const authReducer = (state:any, action:any) => {
+// Property 'state' is missing in type '{ dispatch: React.Dispatch<Action>; user: any; }' but required in type '{ state: State; dispatch: Dispatch<any>; }'.
+
+export const authReducer = (state:State, action:Action) => {
     switch (action.type){
         case 'LOGIN':
             return{...state, user: action.payload}
@@ -34,10 +39,7 @@ export const authReducer = (state:any, action:any) => {
 
 export const AuthContextProvider:FC<AuthContextProviderProps> = ({ children }) => {
 
-    const [state, dispatch] = useReducer(authReducer, {
-        initialState
-    }
-    )
+    const [state, dispatch] = useReducer(authReducer, initialState)
 
     return(
         <AuthContext.Provider value={{...state, dispatch}}>

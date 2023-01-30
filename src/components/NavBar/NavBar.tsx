@@ -5,10 +5,9 @@ import { useAuthContext } from '../../hooks/useAuthContext'
 export const NavBar = () => {
 
     const { logout } = useLogout()
-    const { ...state } = useAuthContext()
+    const { user } = useAuthContext()
 
-    console.log(state)
-
+    console.log(user)
 
     return(
         <nav>
@@ -18,6 +17,7 @@ export const NavBar = () => {
                     <div>Gaming Geek</div>
                 </div>
                 <div className={styles.avatarAndLogoutButton}>
+                    {user && <div>Hello, {user.displayName}</div>}
                     <button onClick={logout}>Log out</button>
                 </div>
             </div>
