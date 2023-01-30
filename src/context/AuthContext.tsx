@@ -1,17 +1,18 @@
 import { createContext, ReactElement, FC, useReducer } from "react"
 
-interface defaultAuthContextValue{
-    user: null
+interface State{
+    user: string;
 }
 
 interface AuthContextProviderProps{
     children: ReactElement;
 }
 
-const initialState = { user: null}
+
+const initialState: State = { user: 'beata' }
 
 export const AuthContext = createContext<{
-    state: defaultAuthContextValue;
+    state: State;
     dispatch: React.Dispatch<any>;
 }>({
     state: initialState,
@@ -35,7 +36,8 @@ export const AuthContextProvider:FC<AuthContextProviderProps> = ({ children }) =
 
     const [state, dispatch] = useReducer(authReducer, {
         initialState
-    })
+    }
+    )
 
     return(
         <AuthContext.Provider value={{...state, dispatch}}>

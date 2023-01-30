@@ -1,0 +1,34 @@
+@mixin flex-column{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.drawerContainer{
+    height: 91vh;
+    width: 295px;
+    background-image: url('../../../public/background.webp');
+    background-size: cover;
+    position: absolute;
+    bottom: 0;
+    border-radius: 0 20px 0 0;
+    box-shadow: 20px -25px 24px -26px rgba(0, 0, 0, 0.30);
+    
+    .backgroundColor{
+        background-color: rgb(94, 0, 96, 0.8);
+        width: 100%;
+        height: 100%;
+        border-radius: 0 20px 0 0;
+
+        .navlinksContainer{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            height: 100%;
+            padding-top: 150px;
+            padding-left: 40px;
+        }
+    }
+    
+}

@@ -1,9 +1,14 @@
 import styles from '../NavBar/NavBar.module.scss'
 import { useLogout } from '../../hooks/useLogout'
+import { useAuthContext } from '../../hooks/useAuthContext'
 
 export const NavBar = () => {
 
     const { logout } = useLogout()
+    const { ...state } = useAuthContext()
+
+    console.log(state)
+
 
     return(
         <nav>

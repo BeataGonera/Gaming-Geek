@@ -20,15 +20,13 @@ export const useLogout = () => {
             
             setIsPending(false)
             setError(null)
+            navigate('/')
         }
-
         catch(error){
             console.log((error as Error).message)
             setError((error as Error).message)
             setIsPending(false)
         }
-
-        navigate('/')
     }
 
     return {logout, error, isPending}
