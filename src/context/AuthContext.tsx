@@ -25,8 +25,6 @@ export const AuthContext = createContext<{
     user: null
 })
 
-// Property 'state' is missing in type '{ dispatch: React.Dispatch<Action>; user: any; }' but required in type '{ state: State; dispatch: Dispatch<any>; }'.
-
 export const authReducer = (state:State, action:Action) => {
     switch (action.type){
         case 'LOGIN':

@@ -5,7 +5,7 @@ import Divider from '@mui/material/Divider';
 import { useSignup } from '../../hooks/useSignup';
 import React, { useState } from 'react';
 import { useTheme } from '../../hooks/useTheme';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 
 
@@ -21,7 +21,7 @@ export const Signup = () => {
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault()
         signup(email, password, displayName)
-        // navigate('/tables')
+        navigate('/tables')
     }
 
     return ( 
@@ -63,6 +63,7 @@ export const Signup = () => {
                         <button className={styles.signupButton} onClick={handleSubmit}>Sign up</button>
                         }
                         <button className={styles.signupButton}>Sign up with Google</button>
+                        <div className={styles.signInLink}>Already have an account? <Link to='/signin'>Sign in.</Link></div>
                         {error && <div className={styles.error}>{error}</div>}
                     </FormControl>
                 </div>

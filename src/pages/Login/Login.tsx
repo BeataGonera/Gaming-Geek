@@ -1,9 +1,10 @@
-import styles from '../signup/Signup.module.scss';
-import TextField from '@mui/material/TextField';
-import FormControl from '@mui/material/FormControl';
-import Divider from '@mui/material/Divider';
-import { useSignin } from '../../hooks/useSignin';
-import React, { useState } from 'react';
+import styles from '../Login/Login.module.scss'
+import TextField from '@mui/material/TextField'
+import FormControl from '@mui/material/FormControl'
+import Divider from '@mui/material/Divider'
+import { useSignin } from '../../hooks/useSignin'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 
 export const Login = () => {
@@ -20,8 +21,8 @@ export const Login = () => {
     return ( 
         <div className={styles.backgroundPicture}>
         <div className={styles.backgroundColor}>
-            <div className={styles.signupPageContainer}>
-                <div className={styles.signupFormContainer}>
+            <div className={styles.signinPageContainer}>
+                <div className={styles.signinFormContainer}>
                     <p>Sign in</p>
                     <Divider className={styles.divider}/>
                     <FormControl className={styles.formControl}>
@@ -40,13 +41,14 @@ export const Login = () => {
                             onChange={(event) => setPassword(event.target.value)} />
             
                         {isPending && 
-                        <button className={styles.signupButton} disabled>loading</button>
+                        <button className={styles.signinButton} disabled>loading</button>
                         }
 
                         {!isPending && 
-                        <button className={styles.signupButton} onClick={handleSubmit}>Sign in</button>
+                        <button className={styles.signinButton} onClick={handleSubmit}>Sign in</button>
                         }
-                        <button className={styles.signupButton}>Sign in with Google</button>
+                        <button className={styles.signinButton}>Sign in with Google</button>
+                        <div className={styles.signupLink}>Don't have an account yet? <Link to='/'>Sign up.</Link></div>
                         {error && <div className={styles.error}>{error}</div>}
                     </FormControl>
                 </div>
