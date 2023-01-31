@@ -1,0 +1,18 @@
+@import '../../assets/sass/mixins.scss';
+@import '../../assets/sass/variables.scss';
+
+.membersContainer{
+
+    width: 19vw;
+    height: 91vh;
+    background: white;
+    border-radius: 20px 20px 0 0;
+
+    .header{
+        @include header;
+        
+        h3{
+          @include header-title;
+        }
+    }
+}

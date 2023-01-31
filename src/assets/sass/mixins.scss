@@ -27,8 +27,24 @@
 }
 
 @mixin drawer-body-members{
-    display: flex;
+        display: flex;
         gap: 20px;
         position: absolute;
         bottom: 0;
+}
+
+@mixin header{
+    width: 100%;
+    height: 8%;
+    border-bottom: 1px solid $grey;
+    display: flex;
+    align-items: center;
+}
+
+@mixin header-title{
+    text-align: center;
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    font-weight: 200;
+    font-size: 16px;
 }

@@ -1,5 +1,15 @@
 @import '../../../assets/sass/mixins.scss';
+@import '../../../assets/sass/variables.scss';
 
 .tablesBodyContainer{
     @include body-container;
+
+    .header{
+        @include header;
+        
+        h3{
+          @include header-title;
+        }
+      }
+
 }

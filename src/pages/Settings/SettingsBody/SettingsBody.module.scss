@@ -3,4 +3,12 @@
 
 .settingsBodyContainer{
   @include body-container;
+
+  .header{
+    @include header;
+    
+    h3{
+      @include header-title;
+    }
+  }
 }
