@@ -1,6 +1,8 @@
 import { createContext, ReactElement, FC, useReducer } from "react"
 
-type State = {user: null}
+type State = {
+    user: any;    
+}
 
 type Action = {
     type: string;
@@ -13,13 +15,12 @@ interface AuthContextProviderProps{
 }
 
 const initialState = { 
-    user: null, 
-    authIsReady: false
+        user: null
  }
 
 export const AuthContext = createContext<{
     dispatch: React.Dispatch<Action>;
-    user:any;
+    user: any;
 }>({
     dispatch: () => null,
     user: null

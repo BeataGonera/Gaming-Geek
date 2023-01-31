@@ -1,9 +1,10 @@
+@import '../../assets/sass/variables.scss';
 @import '../../assets/sass/mixins.scss';
 
-.tablesPageContainer{
-    background: #F5F5F5;
+.settingsPageContainer{
     width: 100vw;
-    min-height: 100vh;
+    height: 100vh;
+    background: $greyBackground;
 
     .drawerBodyMembers{
         @include drawer-body-members;

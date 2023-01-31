@@ -18,3 +18,17 @@
     font-size: 16px;
     cursor: pointer;
 }
+
+@mixin body-container{
+    width: 60vw;
+    height: 91vh;
+    background: white;
+    border-radius: 20px 20px 0 0;
+}
+
+@mixin drawer-body-members{
+    display: flex;
+        gap: 20px;
+        position: absolute;
+        bottom: 0;
+}

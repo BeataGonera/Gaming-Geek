@@ -32,7 +32,6 @@ export const useSignup = () => {
             setIsPending(false)
             setError(null)
             navigate('/tables')
-        
         }
         catch(error){
             console.log((error as Error).message)
