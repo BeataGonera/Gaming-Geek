@@ -13,7 +13,7 @@ export const NavBar = () => {
         <nav>
             <div className={styles.navbar}>
                 <div className={styles.logoAndTitle}>
-                    <img src='dice.webp' width='54px' height='54px'/>
+                    <Link to='/tables'><img src='dice.webp' width='54px' height='54px'/></Link>
                     <div>Gaming Geek</div>
                 </div>
                 <div className={styles.avatarAndLogoutButton}>

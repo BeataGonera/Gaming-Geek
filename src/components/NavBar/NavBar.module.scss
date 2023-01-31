@@ -18,6 +18,11 @@
         align-items: center;
         gap: 30px;
         padding-left: 25px;
+
+        a{
+            display: flex;
+            align-items: center;
+        }
     }
 
     .avatarAndLogoutButton{
