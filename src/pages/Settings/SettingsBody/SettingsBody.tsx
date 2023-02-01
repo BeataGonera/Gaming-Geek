@@ -7,17 +7,17 @@ export const SettingsBody = () => {
 
     const [selectedPhoto, setSelectedPhoto] = useState<null | any>(null) 
     const [avatarPhotoError, setAvatarPhotoError] = useState<null | string>(null)
-    const { state } = useAuthContext()
+    const { user } = useAuthContext()
     const [isNewPhotoUploaded, setIsNewPhotoUploaded] = useState(false)
 
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        const uploadPath = `avatars/${state.user?.uid}/${selectedPhoto?.name}`
+        const uploadPath = `avatars/${user?.uid}/${selectedPhoto?.name}`
         const uploadedPhoto = await storage.ref(uploadPath).put(selectedPhoto)
         const uploadedPhotoURL = await uploadedPhoto.ref.getDownloadURL()
-        await state.user.updateProfile({photoURL: uploadedPhotoURL})
-        console.log(state.user)
+        await user.updateProfile({photoURL: uploadedPhotoURL})
+        console.log(user)
         setIsNewPhotoUploaded(current => !current) 
     }
 
@@ -45,8 +45,8 @@ export const SettingsBody = () => {
             <div className={styles.header}><h3>Settings</h3></div>
 
             <div className={styles.photoContainer}>
-                <img src={state.user.photoURL} className={styles.photo}></img>
-                <p>{state.user.displayName}</p>
+                <img src={user.photoURL} className={styles.photo}></img>
+                <p>{user.displayName}</p>
             </div>
 
             <div className={styles.settingsContent}>

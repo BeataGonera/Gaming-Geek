@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 export const NavBar = () => {
 
     const { logout } = useLogout()
-    const { state } = useAuthContext()
+    const { user, authIsReady } = useAuthContext()
 
     return(
         <nav>
@@ -17,10 +17,10 @@ export const NavBar = () => {
                     <div>Gaming Geek</div>
                 </div>
                 <div className={styles.avatarAndLogoutButton}>
-                    {state.user && 
+                    {user && 
                     <div className={styles.userInfoContainer}>
-                         <img src={state.user.photoURL} className={styles.photo}/>
-                         <span>Signed in as {state.user.displayName}</span>
+                         <img src={user.photoURL} className={styles.photo}/>
+                         <span>Signed in as {user.displayName}</span>
                     </div>
                     }
                     <button onClick={logout} className={styles.logoutButton}>Log out</button>
