@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { auth } from '../firebase/config'
+import { auth, storage } from '../firebase/config'
 import { useAuthContext } from '../hooks/useAuthContext'
 
 type Signup = (email: string, password: string, displayName: string) => Promise<any>

@@ -16,31 +16,47 @@
 
     padding: 40px;
 
-    .changePhotoInput[type=file]{
-      border: 1px solid $grey;
-      height: 42px;
-      width: 400px;
+    .changePhotoForm{
       display: flex;
       align-items: center;
-      font-size: 16px;
-    }
-  
-    .changePhotoInput::file-selector-button{
-      background-color: white;
-      border: 1px solid $primary;
-      border-radius: 4px;
-      width: 100px;
-      height: 30px;
-      color: $primary;
-      margin: 5px;
-      margin-right: 10px;
-    }
+      gap: 10px;
+      
+      .changePhotoInput[type=file]{
+        border: 1px solid $grey;
+        height: 42px;
+        width: 400px;
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+      }
+    
+      .changePhotoInput::file-selector-button{
+        @include button-outlined-basic;
 
+        &:hover{
+          @include button-outlined-hover;
+        }
+        &:active{
+          @include button-outlined-active;
+        }
+      }
+
+      .changePhotoButton{
+        @include button-filled-basic;
+        font-size: 16px;
+
+        &:hover{
+          @include button-filled-hover;
+        }
+        &:active{
+          @include button-filled-active;
+      }
+    }
+  }
     .avatarPhotoError{
       color: $error;
       font-size: 16px;
       margin-top: 10px;
     }
   }
-
 }

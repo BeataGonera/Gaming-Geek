@@ -21,16 +21,18 @@
 
 @mixin body-container{
     width: 60vw;
-    height: 91vh;
+    height: 90vh;
     background: white;
     border-radius: 20px 20px 0 0;
 }
 
 @mixin drawer-body-members{
-        display: flex;
-        gap: 20px;
-        position: absolute;
-        bottom: 0;
+    width: 100vw;
+    display: flex;
+    height: 90vh;
+    gap: 20px;
+    position: absolute;
+    bottom: 0;
 }
 
 @mixin header{
@@ -47,4 +49,46 @@
     font-family: 'Inter', sans-serif;
     font-weight: 200;
     font-size: 16px;
+}
+
+@mixin button-outlined-basic{
+    background-color: white;
+    border: 1px solid $primary;
+    border-radius: 4px;
+    min-width: 100px;
+    height: 30px;
+    color: $primary;
+    margin: 5px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+@mixin button-outlined-hover{
+    background-color: $primary;
+    color: white;
+}
+
+@mixin button-outlined-active{
+    background-color: white;
+    color: $primary;
+}
+
+@mixin button-filled-basic{
+    background-color: $primary;
+    border: 1px solid $primary;
+    border-radius: 4px;
+    min-width: 100px;
+    height: 40px;
+    color: white;
+    cursor: pointer;
+}
+
+@mixin button-filled-hover{
+    background-color: white;
+    color: $primary;
+}
+
+@mixin button-filled-active{
+    background-color: $primary;
+    color: white;
 }

@@ -18,7 +18,7 @@ export const NavBar = () => {
                 </div>
                 <div className={styles.avatarAndLogoutButton}>
                     {user && <div>Signed in as {user.displayName}</div>}
-                    <button onClick={logout}>Log out</button>
+                    <button onClick={logout} className={styles.logoutButton}>Log out</button>
                     <Link to='/settings' className={styles.settingsLink}><SettingsOutlinedIcon/></Link>
                 </div>
             </div>

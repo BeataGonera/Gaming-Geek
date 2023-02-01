@@ -1,25 +1,37 @@
 import React, { useState } from 'react'
 import styles from '../SettingsBody/SettingsBody.module.scss'
+import { useAuthContext } from '../../../hooks/useAuthContext'
+import { storage } from '../../../firebase/config'
 
 export const SettingsBody = () => {
 
-    const [avatarPhoto, setAvatarPhoto] = useState<null | string>(null) 
+    const [selectedPhoto, setSelectedPhoto] = useState<null | any>(null) 
     const [avatarPhotoError, setAvatarPhotoError] = useState<null | string>(null)
+    const {user} = useAuthContext()
+
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+        const uploadPath = `avatars/${user?.uid}/${selectedPhoto?.name}`
+        const uploadedPhoto = await storage.ref(uploadPath).put(selectedPhoto)
+        const uploadedPhotoURL = await uploadedPhoto.ref.getDownloadURL()
+        await user.updateProfile({photoURL: `${uploadedPhotoURL}`})
+        console.log(user)
+    }
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setAvatarPhoto(null)
+        setSelectedPhoto(null)
         if(event.target.files){
-            let selected = event.target.files[0]
+            setSelectedPhoto(event.target.files[0])
 
-            if(!selected){
+            if(!selectedPhoto){
                 setAvatarPhotoError('Select a file.')
             }
     
-            if(!selected.type.includes('image')){
+            if(!selectedPhoto?.type.includes('image')){
                 setAvatarPhotoError('Selected file must be an image')
             }
 
-            if(selected.size > 100000){
+            if(selectedPhoto?.size !== undefined && selectedPhoto?.size > 100000){
                 setAvatarPhotoError('Selected file size must be less than 100kb')
             }
         }
@@ -30,11 +42,15 @@ export const SettingsBody = () => {
             <div className={styles.header}><h3>Settings</h3></div>
 
             <div className={styles.settingsContent}>
-                <input 
-                    type='file' 
-                    className={styles.changePhotoInput}
-                    onChange={handleFileChange}>
-                </input>
+                <form className={styles.changePhotoForm} onSubmit={handleSubmit}>
+                    <input 
+                        type='file' 
+                        className={styles.changePhotoInput}
+                        onChange={handleFileChange}
+                        required>
+                    </input>
+                    <button type='submit' className={styles.changePhotoButton}>Save changes</button>
+                </form>
                 {avatarPhotoError && <div className={styles.avatarPhotoError}>{avatarPhotoError}</div>}
             </div>
         </div>
