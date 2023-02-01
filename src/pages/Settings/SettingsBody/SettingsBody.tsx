@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '../SettingsBody/SettingsBody.module.scss'
 import { useAuthContext } from '../../../hooks/useAuthContext'
 import { storage } from '../../../firebase/config'
@@ -7,15 +7,18 @@ export const SettingsBody = () => {
 
     const [selectedPhoto, setSelectedPhoto] = useState<null | any>(null) 
     const [avatarPhotoError, setAvatarPhotoError] = useState<null | string>(null)
-    const {user} = useAuthContext()
+    const { state } = useAuthContext()
+    const [isNewPhotoUploaded, setIsNewPhotoUploaded] = useState(false)
+
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        const uploadPath = `avatars/${user?.uid}/${selectedPhoto?.name}`
+        const uploadPath = `avatars/${state.user?.uid}/${selectedPhoto?.name}`
         const uploadedPhoto = await storage.ref(uploadPath).put(selectedPhoto)
         const uploadedPhotoURL = await uploadedPhoto.ref.getDownloadURL()
-        await user.updateProfile({photoURL: `${uploadedPhotoURL}`})
-        console.log(user)
+        await state.user.updateProfile({photoURL: uploadedPhotoURL})
+        console.log(state.user)
+        setIsNewPhotoUploaded(current => !current) 
     }
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,7 +34,7 @@ export const SettingsBody = () => {
                 setAvatarPhotoError('Selected file must be an image')
             }
 
-            if(selectedPhoto?.size !== undefined && selectedPhoto?.size > 100000){
+            if(!selectedPhoto.size !== undefined && selectedPhoto.size > 100000){
                 setAvatarPhotoError('Selected file size must be less than 100kb')
             }
         }
@@ -41,7 +44,13 @@ export const SettingsBody = () => {
         <div className={styles.settingsBodyContainer}>
             <div className={styles.header}><h3>Settings</h3></div>
 
+            <div className={styles.photoContainer}>
+                <img src={state.user.photoURL} className={styles.photo}></img>
+                <p>{state.user.displayName}</p>
+            </div>
+
             <div className={styles.settingsContent}>
+                <p>Change profile picture</p>
                 <form className={styles.changePhotoForm} onSubmit={handleSubmit}>
                     <input 
                         type='file' 

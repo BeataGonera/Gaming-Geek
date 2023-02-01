@@ -21,7 +21,6 @@
 
 @mixin body-container{
     width: 60vw;
-    height: 90vh;
     background: white;
     border-radius: 20px 20px 0 0;
 }
@@ -29,7 +28,7 @@
 @mixin drawer-body-members{
     width: 100vw;
     display: flex;
-    height: 90vh;
+    height: 91vh;
     gap: 20px;
     position: absolute;
     bottom: 0;

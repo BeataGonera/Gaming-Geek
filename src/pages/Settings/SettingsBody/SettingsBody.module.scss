@@ -3,6 +3,7 @@
 
 .settingsBodyContainer{
   @include body-container;
+  position: relative;
 
   .header{
     @include header;
@@ -12,9 +13,30 @@
     }
   }
 
+  .photoContainer{
+    position: absolute;
+    top: 5px;
+    left: 35px;
+
+    img.photo{
+      width: 95px;
+      height: 95px;
+      box-shadow: $shadow;
+      box-sizing: content-box;
+      border: 5px solid white;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    p{
+      text-align: center;
+    }
+  }
+
   .settingsContent{
 
     padding: 40px;
+    padding-top: 120px;
 
     .changePhotoForm{
       display: flex;

@@ -1,7 +1,13 @@
-import { createContext, ReactElement, FC, useReducer } from "react"
+import React, { createContext, ReactElement, FC, useReducer } from "react"
+
+enum ActionTypes{
+    LOGIN = 'LOGIN',
+    LOGOUT = 'LOGOUT' 
+}
 
 type State = {
-    user: any;    
+    user: any;
+    authIsReady: boolean;    
 }
 
 type Action = {
@@ -15,28 +21,29 @@ interface AuthContextProviderProps{
 }
 
 const initialState = { 
-        user: null
+        user: null, 
+        authIsReady: false
  }
 
 export const AuthContext = createContext<{
-    dispatch: React.Dispatch<Action>;
-    user: any;
+    state: State;
+    dispatch: React.Dispatch<Action>
 }>({
-    dispatch: () => null,
-    user: null
+    state: initialState,
+    dispatch: () => {}
 })
 
-export const authReducer = (state:State, action:Action) => {
-    switch (action.type){
-        case 'LOGIN':
-            return{...state, user: action.payload}
-        
-        case 'LOGOUT':
-            return{...state, user: null}
+export const authReducer = (state:State, action:Action) => ({ 
+    user: userReducer(action), 
+    authIsReady: authIsReadyReducer(action)
+})
 
-        default: 
-            return state
-    }
+export const userReducer = (action:Action) => {
+    return action.payload
+}
+
+export const authIsReadyReducer = (action:Action) => {
+    return action.type == 'LOGIN'
 }
 
 export const AuthContextProvider:FC<AuthContextProviderProps> = ({ children }) => {
@@ -44,7 +51,7 @@ export const AuthContextProvider:FC<AuthContextProviderProps> = ({ children }) =
     const [state, dispatch] = useReducer(authReducer, initialState)
 
     return(
-        <AuthContext.Provider value={{...state, dispatch}}>
+        <AuthContext.Provider value={{state, dispatch}}>
             {children}
         </AuthContext.Provider>
     )

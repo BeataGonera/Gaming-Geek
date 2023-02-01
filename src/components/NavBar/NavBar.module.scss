@@ -28,8 +28,20 @@
 
     .avatarAndLogoutButton{
         display: flex;
-        gap: 10px;
 
+        .userInfoContainer{
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-right: 20px;
+
+            .photo{
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+            } 
+        }
+        
         .logoutButton{
             @include button-outlined-basic;
             
