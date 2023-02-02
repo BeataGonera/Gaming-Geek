@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { auth, storage } from '../firebase/config'
+import { auth, storage, db } from '../firebase/config'
 import { useAuthContext } from '../hooks/useAuthContext'
 
 type Signup = (email: string, password: string, displayName: string) => Promise<any>
@@ -24,6 +24,13 @@ export const useSignup = () => {
             }
 
             await res.user?.updateProfile({ displayName })
+
+            //create user document in Firestore
+
+            await db.collection('users').doc(res.user?.uid).set({
+                online: true, 
+                displayName
+            })
 
             // dispatch login action
 

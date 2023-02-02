@@ -45,7 +45,7 @@ export const SettingsBody = () => {
             <div className={styles.header}><h3>Settings</h3></div>
 
             <div className={styles.photoContainer}>
-                <img src={user.photoURL} className={styles.photo}></img>
+                <img src={user.photoURL ? user.photoURL : `${'/avatar.jpeg'}`} className={styles.photo}></img>
                 <p>{user.displayName}</p>
             </div>
 

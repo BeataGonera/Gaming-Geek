@@ -21,7 +21,6 @@ export const Signup = () => {
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault()
         signup(email, password, displayName)
-        // navigate('/tables')
     }
 
     return ( 
