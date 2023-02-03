@@ -1,13 +1,14 @@
 import { useState } from 'react'
-import { auth } from '../firebase/config'
+import { auth, db } from '../firebase/config'
 import { useAuthContext } from './useAuthContext'
 import { useNavigate } from 'react-router-dom'
+import { doc, updateDoc } from 'firebase/firestore'
 
 export const useLogout = () => {
 
     const [error, setError] = useState<null | string>(null)
     const [isPending, setIsPending] = useState<null | boolean>(null)
-    const { dispatch } = useAuthContext() 
+    const { dispatch, user } = useAuthContext() 
     const navigate = useNavigate()
 
     const logout = async () => {
@@ -15,6 +16,14 @@ export const useLogout = () => {
         setIsPending(true)
 
         try{
+            //update online status
+
+            const { uid } = user
+
+            const userDocumentRef = doc(db, "users", user.uid)
+            await updateDoc(userDocumentRef, {online: false})
+
+
             await auth.signOut()
             dispatch({
                 type: 'LOGOUT',

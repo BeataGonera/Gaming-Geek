@@ -1,7 +1,9 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { auth, storage, db } from '../firebase/config'
+import { auth, db } from '../firebase/config'
 import { useAuthContext } from '../hooks/useAuthContext'
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
+import { collection, setDoc, doc } from 'firebase/firestore'
 
 type Signup = (email: string, password: string, displayName: string) => Promise<any>
 
@@ -17,19 +19,21 @@ export const useSignup = () => {
         setIsPending(true)
         
         try{
-            const res = await auth.createUserWithEmailAndPassword(email, password)
+            const res = await createUserWithEmailAndPassword(auth, email, password)
 
             if(!res){
                 throw new Error('Could not complete signup.')
             }
 
-            await res.user?.updateProfile({ displayName })
+            await updateProfile(res.user, { displayName })
 
             //create user document in Firestore
+            const usersRef = collection(db, 'users')
 
-            await db.collection('users').doc(res.user?.uid).set({
+            await setDoc(doc(usersRef, res.user?.uid ),{
                 online: true, 
-                displayName
+                displayName, 
+                photoURL: ''
             })
 
             // dispatch login action

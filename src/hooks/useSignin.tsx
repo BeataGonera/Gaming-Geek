@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { auth } from '../firebase/config'
 import { useAuthContext } from '../hooks/useAuthContext'
+import { signInWithEmailAndPassword } from 'firebase/auth'
 
 type Signin = (email: string, password: string) => Promise<any>
 
@@ -17,7 +18,7 @@ export const useSignin = () => {
         setIsPending(true)
         
         try{
-            const res = await auth.signInWithEmailAndPassword(email, password)
+            const res = await signInWithEmailAndPassword(auth, email, password)
 
             if(!res){
                 throw new Error('Could not complete signin.')

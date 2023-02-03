@@ -1,7 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import styles from '../SettingsBody/SettingsBody.module.scss'
 import { useAuthContext } from '../../../hooks/useAuthContext'
 import { storage } from '../../../firebase/config'
+import { db } from '../../../firebase/config'
+import { doc, updateDoc } from 'firebase/firestore'
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
+import { updateProfile } from 'firebase/auth'
+
 
 export const SettingsBody = () => {
 
@@ -13,11 +18,14 @@ export const SettingsBody = () => {
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        const uploadPath = `avatars/${user?.uid}/${selectedPhoto?.name}`
-        const uploadedPhoto = await storage.ref(uploadPath).put(selectedPhoto)
-        const uploadedPhotoURL = await uploadedPhoto.ref.getDownloadURL()
-        await user.updateProfile({photoURL: uploadedPhotoURL})
-        console.log(user)
+        const uploadPath = ref(storage, `avatars/${user?.uid}/${selectedPhoto?.name}`)
+        const uploadedPhoto = await uploadBytes(uploadPath, selectedPhoto)
+        const uploadedPhotoURL = await getDownloadURL(ref(storage, `avatars/${user.uid}/${selectedPhoto?.name}`))
+        await updateProfile(user, {photoURL: uploadedPhotoURL})
+
+        const userDocumentRef = doc(db, "users", user.uid)
+        await updateDoc(userDocumentRef, {photoURL: `${uploadedPhotoURL}`})
+
         setIsNewPhotoUploaded(current => !current) 
     }
 
@@ -26,17 +34,17 @@ export const SettingsBody = () => {
         if(event.target.files){
             setSelectedPhoto(event.target.files[0])
 
-            if(!selectedPhoto){
-                setAvatarPhotoError('Select a file.')
-            }
+            // if(!selectedPhoto){
+            //     setAvatarPhotoError('Select a file.')
+            // }
     
-            if(!selectedPhoto?.type.includes('image')){
-                setAvatarPhotoError('Selected file must be an image')
-            }
+            // if(!selectedPhoto?.type.includes('image')){
+            //     setAvatarPhotoError('Selected file must be an image')
+            // }
 
-            if(!selectedPhoto.size !== undefined && selectedPhoto.size > 100000){
-                setAvatarPhotoError('Selected file size must be less than 100kb')
-            }
+            // if(!selectedPhoto?.size !== undefined && selectedPhoto.size > 100000){
+            //     setAvatarPhotoError('Selected file size must be less than 100kb')
+            // }
         }
     }
 
@@ -58,7 +66,7 @@ export const SettingsBody = () => {
                         onChange={handleFileChange}
                         required>
                     </input>
-                    <button type='submit' className={styles.changePhotoButton}>Save changes</button>
+                    <button type='submit' className={styles.changePhotoButton}>Upload</button>
                 </form>
                 {avatarPhotoError && <div className={styles.avatarPhotoError}>{avatarPhotoError}</div>}
             </div>
