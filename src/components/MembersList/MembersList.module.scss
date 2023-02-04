@@ -9,6 +9,13 @@
         align-items: center;
         gap: 20px;
 
+        .onlineIndicator{
+            width: 10px;
+            height: 10px;
+            background: #1aee2c;
+            border-radius: 50%;
+        }
+
         .avatar{
             width: 32px;
             height: 32px;

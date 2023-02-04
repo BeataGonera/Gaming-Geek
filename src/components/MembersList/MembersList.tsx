@@ -57,6 +57,7 @@ export const MembersList = () => {
             {allMembers && 
                 allMembers.map((member)=> (
                     <div key={member.displayName} className={styles.membersListItem}>
+                        {member.online && <span className={styles.onlineIndicator}></span>}
                         <p className={styles.displayName}>{member.displayName}</p>
                         <img src={member.photoURL} className={styles.avatar}/>
                     </div>
