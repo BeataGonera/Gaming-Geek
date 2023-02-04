@@ -13,20 +13,27 @@ export const SettingsBody = () => {
     const [selectedPhoto, setSelectedPhoto] = useState<null | any>(null) 
     const [avatarPhotoError, setAvatarPhotoError] = useState<null | string>(null)
     const { user } = useAuthContext()
+    const [isPending, setIsPending] = useState(false)
     const [isNewPhotoUploaded, setIsNewPhotoUploaded] = useState(false)
+    const { dispatch } = useAuthContext()
 
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
+        setIsPending(true)
         const uploadPath = ref(storage, `avatars/${user?.uid}/${selectedPhoto?.name}`)
         const uploadedPhoto = await uploadBytes(uploadPath, selectedPhoto)
         const uploadedPhotoURL = await getDownloadURL(ref(storage, `avatars/${user.uid}/${selectedPhoto?.name}`))
-        await updateProfile(user, {photoURL: uploadedPhotoURL})
-
+       
         const userDocumentRef = doc(db, "users", user.uid)
         await updateDoc(userDocumentRef, {photoURL: `${uploadedPhotoURL}`})
 
-        setIsNewPhotoUploaded(current => !current) 
+        await updateProfile(user, {photoURL: uploadedPhotoURL})
+
+        dispatch({type: 'CHANGE_PROFILE_PICTURE', payload: user})
+
+        setIsNewPhotoUploaded(current => !current)
+        setIsPending(false)
     }
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -66,7 +73,8 @@ export const SettingsBody = () => {
                         onChange={handleFileChange}
                         required>
                     </input>
-                    <button type='submit' className={styles.changePhotoButton}>Upload</button>
+                    {isPending && <button type='submit' className={styles.changePhotoButton} disabled>Uploading...</button>}
+                    {!isPending && <button type='submit' className={styles.changePhotoButton}>Upload</button>}
                 </form>
                 {avatarPhotoError && <div className={styles.avatarPhotoError}>{avatarPhotoError}</div>}
             </div>

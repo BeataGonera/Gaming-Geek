@@ -4,7 +4,6 @@ import FormControl from '@mui/material/FormControl';
 import Divider from '@mui/material/Divider';
 import { useSignup } from '../../hooks/useSignup';
 import React, { useState } from 'react';
-import { useTheme } from '../../hooks/useTheme';
 import { useNavigate, Link } from 'react-router-dom';
 
 
@@ -15,7 +14,6 @@ export const Signup = () => {
     const [password, setPassword] = useState('')
     const [displayName, setDisplayName] = useState('')
     const {error, isPending, signup} = useSignup()
-    const { color, changeColor } = useTheme()
     const navigate = useNavigate()
 
     const handleSubmit = (event: React.FormEvent) => {

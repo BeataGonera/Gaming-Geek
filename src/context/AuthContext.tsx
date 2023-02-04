@@ -42,6 +42,9 @@ export const authReducer = (state:State, action:Action) => {
         case 'AUTH_IS_READY':
                 return{...state, user: action.payload, authIsReady: true}
 
+        case 'CHANGE_PROFILE_PICTURE':
+                return{...state, user: action.payload}
+
         default: 
                 return state
         }
