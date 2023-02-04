@@ -25,7 +25,7 @@ export const useSignup = () => {
                 throw new Error('Could not complete signup.')
             }
 
-            await updateProfile(res.user, { displayName })
+            await updateProfile(res.user, { photoURL: '/avatar.jpeg', displayName })
 
             //create user document in Firestore
             const usersRef = collection(db, 'users')
@@ -33,7 +33,7 @@ export const useSignup = () => {
             await setDoc(doc(usersRef, res.user?.uid ),{
                 online: true, 
                 displayName, 
-                photoURL: ''
+                photoURL: '/avatar.jpeg'
             })
 
             // dispatch login action

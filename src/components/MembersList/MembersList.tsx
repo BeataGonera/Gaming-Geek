@@ -44,11 +44,12 @@ export const MembersList = () => {
                 }
             })
             setAllMembers(members)
-            unsubscribe()
         }, (error) => {
             setError(error.message)
             setIsPending(false)
-        } )
+        })
+
+        return () => unsubscribe()
     }
 
     return(
