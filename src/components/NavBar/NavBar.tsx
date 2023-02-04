@@ -19,7 +19,7 @@ export const NavBar = () => {
                 <div className={styles.avatarAndLogoutButton}>
                     {user && 
                     <div className={styles.userInfoContainer}>
-                         <Link to='/settings'><img src={user.photoURL} className={styles.photo}/></Link>
+                         <Link to='/settings'><img src={user.photoURL ? user.photoURL : `${'/avatar.jpeg'}` } className={styles.photo}/></Link>
                          <span>Signed in as {user.displayName}</span>
                     </div>
                     }

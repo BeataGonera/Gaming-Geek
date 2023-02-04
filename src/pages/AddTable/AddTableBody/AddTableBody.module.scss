@@ -1,0 +1,15 @@
+@import '../../../assets/sass/variables.scss';
+@import '../../../assets/sass/mixins.scss';
+
+.addTableBodyContainer{
+    @include body-container;
+    position: relative;
+  
+    .header{
+      @include header;
+      
+      h3{
+        @include header-title;
+      }
+    }
+}

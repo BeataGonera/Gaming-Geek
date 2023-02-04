@@ -1,0 +1,14 @@
+@import '../../assets/sass/mixins.scss';
+@import '../../assets/sass/variables.scss';
+
+
+.addTablePageContainer{
+    background: $greyBackground;
+    width: 100vw;
+    height: 100vh;
+}
+
+.drawerBodyMembers{
+    @include drawer-body-members;
+    
+}

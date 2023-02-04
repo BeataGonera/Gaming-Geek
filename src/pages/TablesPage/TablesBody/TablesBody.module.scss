@@ -3,6 +3,7 @@
 
 .tablesBodyContainer{
     @include body-container;
+    position: relative;
 
     .header{
         @include header;
@@ -10,6 +11,32 @@
         h3{
           @include header-title;
         }
+      }
+
+      .createNewTableButton{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 213px;
+        height: 40px;
+        background: $primary;
+        box-shadow: $shadow;
+        color: white;
+        text-transform: uppercase;
+        font-weight: 600;
+        border-radius: 64px;
+        border: none;
+        position: absolute;
+        right: 70px;
+        bottom: 150px;
+        cursor: pointer;
+
+        &:hover{
+          @include button-filled-hover;
+        }
+        &:active{
+          @include button-filled-active;
+      }
       }
 
 }
