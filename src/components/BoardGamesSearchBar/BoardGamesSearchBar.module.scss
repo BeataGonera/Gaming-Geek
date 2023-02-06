@@ -1,0 +1,27 @@
+@import '../../assets/sass/mixins.scss';
+@import '../../assets/sass/variables.scss';
+
+
+.searchBoardGamesFormContainer{
+    .searchBoardGamesForm{
+        display: flex;
+        gap: 10px;
+
+        .searchInput{
+            width: 300px;
+            height: 40px;
+            border: 1px solid $grey;
+            border-radius: 4px;
+        }
+        
+        .boardGamesSearchButton{
+            @include button-filled-basic;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+    }
+}
+
+
+
