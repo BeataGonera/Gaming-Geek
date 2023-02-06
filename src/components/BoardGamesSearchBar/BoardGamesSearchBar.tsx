@@ -6,6 +6,7 @@ interface Boardgame{
     name: string;
     picture: string;
     description: string;
+    players: number[];
 }
 
 interface BoardGamesSearchBarProps{
@@ -28,7 +29,8 @@ export const BoardGamesSearchBar:FC<BoardGamesSearchBarProps> = ({setFetchedGame
             setFetchedGame({
                 name: data.games[0].name,
                 picture: data.games[0].images.large,
-                description: data.games[0].description_preview
+                description: data.games[0].description_preview,
+                players: data.games[0].player_counts
             })
             console.log(data)
         }catch(error){
@@ -39,6 +41,7 @@ export const BoardGamesSearchBar:FC<BoardGamesSearchBarProps> = ({setFetchedGame
     return ( 
         
         <div className={styles.searchBoardGamesFormContainer}>
+            <p>What game would you like to play?</p>
             <form onSubmit={handleSubmit} className={styles.searchBoardGamesForm}>
                 <input 
                     placeholder="Settlers of Cathan" 

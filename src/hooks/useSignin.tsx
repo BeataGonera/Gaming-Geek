@@ -1,8 +1,9 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { auth } from '../firebase/config'
+import { auth, db } from '../firebase/config'
 import { useAuthContext } from '../hooks/useAuthContext'
 import { signInWithEmailAndPassword } from 'firebase/auth'
+import { doc, updateDoc } from 'firebase/firestore' 
 
 type Signin = (email: string, password: string) => Promise<any>
 
@@ -10,7 +11,7 @@ export const useSignin = () => {
 
     const [error, setError] = useState<null | string>(null)
     const [isPending, setIsPending] = useState<null | boolean>(null)
-    const { dispatch } = useAuthContext() 
+    const { dispatch, user } = useAuthContext() 
     const navigate = useNavigate()
 
     const signin:Signin = async (email, password) => {
@@ -27,6 +28,9 @@ export const useSignin = () => {
             // dispatch login action
 
             dispatch({type: 'LOGIN', payload: res.user})
+
+            const userDocumentRef = doc(db, "users", res.user.uid)
+            await updateDoc(userDocumentRef, {online: true})
 
             setIsPending(false)
             setError(null)

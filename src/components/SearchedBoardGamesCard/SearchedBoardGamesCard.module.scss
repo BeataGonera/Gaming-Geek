@@ -19,11 +19,12 @@
         align-items: center;
         grid-column: 1 / 2;
         grid-row: 1 / 2;
+        border-radius: 12px 0 0 0;
        
        img{
             width: 120px;
             height: 120px;
-            object-fit: cover;
+            object-fit: contain;
        } 
     }
 
@@ -48,15 +49,30 @@
         grid-row: 2 / 3;
         display: flex;
         align-items: center;
-        justify-content: end;
+        justify-content: space-between;
 
         .playersContainer{
             width: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            padding-left: 10px;
+            gap: 10px;
+
+            img{
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+            }
         }
 
         .createATableButton{
             @include button-filled-basic;
             margin-right: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
 
             &:hover{
                 @include button-filled-hover;
