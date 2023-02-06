@@ -1,0 +1,70 @@
+@import '../../assets/sass/mixins.scss';
+@import '../../assets/sass/variables.scss';
+
+.cardContainer{
+    width: 370px;
+    height: 235px;
+    box-shadow: $shadow;
+    border-radius: 12px;
+    border: none;
+    display: grid;
+    grid-template-columns: 4fr 6fr;
+    grid-template-rows: 3fr 1fr;
+    margin-top: 30px;
+
+    .picture{
+        background: $grey;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+       
+       img{
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+       } 
+    }
+
+    .description{
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+
+        div{
+            width: 100%;
+            height: 75px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+
+    .membersAndActionButtonContainer{
+        border-top: 1px solid $grey;
+        grid-column: 1 / 3;
+        grid-row: 2 / 3;
+        display: flex;
+        align-items: center;
+        justify-content: end;
+
+        .playersContainer{
+            width: 50%;
+        }
+
+        .createATableButton{
+            @include button-filled-basic;
+            margin-right: 20px;
+
+            &:hover{
+                @include button-filled-hover;
+            }
+
+            &:active{
+                @include button-filled-active;
+            }
+        }
+    }
+}

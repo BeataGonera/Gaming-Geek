@@ -1,14 +1,23 @@
-import React, {useState} from "react"
+import React, {useState, FC} from "react"
 import styles from '../BoardGamesSearchBar/BoardGamesSearchBar.module.scss'
 import SearchIcon from '@mui/icons-material/Search';
 
-export const BoardGamesSearchBar = () => {
+interface Boardgame{
+    name: string;
+    picture: string;
+    description: string;
+}
+
+interface BoardGamesSearchBarProps{
+    setFetchedGame: (boardgame: Boardgame) => void;
+}
+
+export const BoardGamesSearchBar:FC<BoardGamesSearchBarProps> = ({setFetchedGame}) => {
 
     const [searchedGame, setSearchedGame] = useState<string | null>(null)
 
     const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
         setSearchedGame(e.target.value)
-        console.log(e.target.value)
     }
 
     const handleSubmit = async (e:React.FormEvent) => {
@@ -16,7 +25,12 @@ export const BoardGamesSearchBar = () => {
         try{
             const response = await fetch(`https://api.boardgameatlas.com/api/search?name=${searchedGame}&client_id=JLBr5npPhV`)
             const data = await response.json()
-            console.log(data) 
+            setFetchedGame({
+                name: data.games[0].name,
+                picture: data.games[0].images.large,
+                description: data.games[0].description_preview
+            })
+            console.log(data)
         }catch(error){
             console.log(error)
         }

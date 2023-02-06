@@ -12,13 +12,15 @@
             height: 40px;
             border: 1px solid $grey;
             border-radius: 4px;
+            padding-left: 10px;
         }
         
         .boardGamesSearchButton{
             @include button-filled-basic;
             display: flex;
+            justify-content: center;
             align-items: center;
-            gap: 2px;
+            gap: 5px;
         }
     }
 }
