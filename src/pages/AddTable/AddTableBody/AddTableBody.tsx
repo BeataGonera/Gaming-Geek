@@ -1,6 +1,7 @@
+import { CircularProgress } from '@mui/material'
 import { useState } from 'react';
-import { BoardGamesSearchBar } from '../../../components/BoardGamesSearchBar/BoardGamesSearchBar';
-import { SearchedBoardGamesCard } from '../../../components/SearchedBoardGamesCard/SearchedBoardGamesCard';
+import { BoardGamesSearchBar } from '../../../components/BoardGamesSearchBar/BoardGamesSearchBar'
+import { SearchedBoardGamesCard } from '../../../components/SearchedBoardGamesCard/SearchedBoardGamesCard'
 import styles from '../AddTableBody/AddTableBody.module.scss'
 
 interface Boardgame{
@@ -12,16 +13,22 @@ interface Boardgame{
 
 export const AddTableBody = () => {
 
-    const [fetchedGame, setFetchedGame] = useState<Boardgame | null>(null)
+    const [fetchedGames, setFetchedGames] = useState<Boardgame[] | null>(null)
+    const [isPending, setIsPending] = useState<boolean>(false)
+    const [error, setError] = useState<string | null>(null)
 
     return ( 
         <div className={styles.addTableBodyContainer}>
             <div className={styles.header}><h3>Add a new table</h3></div>
             <div className={styles.createTableContainer}>
-                <BoardGamesSearchBar setFetchedGame={setFetchedGame}/>
-                {fetchedGame && (
-                   <SearchedBoardGamesCard fetchedGame={fetchedGame}/>
-                )}
+                <BoardGamesSearchBar setFetchedGames={setFetchedGames} setIsPending={setIsPending} setError={setError}/>
+                <div className={styles.fetchedGamesContainer}>
+                    {fetchedGames && !isPending ? fetchedGames.map((fetchedGame) => (
+                        <SearchedBoardGamesCard fetchedGame={fetchedGame}/>
+                    )) : (
+                        <CircularProgress size={80} sx={{color: "#5E0060", position: "relative", top: "200px", left:'50%'}}/>
+                    )}
+                </div>
             </div>
 
         </div>

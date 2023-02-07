@@ -3,7 +3,7 @@
 
 .addTableBodyContainer{
     @include body-container;
-    position: relative;
+
   
     .header{
       @include header;
@@ -16,5 +16,11 @@
     .createTableContainer{
       padding: 40px;
 
+      .fetchedGamesContainer{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 50px;
+        padding: 40px;
+      }
     }
 }

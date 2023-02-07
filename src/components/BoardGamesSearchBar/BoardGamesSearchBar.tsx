@@ -10,10 +10,12 @@ interface Boardgame{
 }
 
 interface BoardGamesSearchBarProps{
-    setFetchedGame: (boardgame: Boardgame) => void;
+    setFetchedGames: (boardgames: Boardgame[]) => void;
+    setIsPending: (isPending: boolean) => void;
+    setError: (error: string) => void;
 }
 
-export const BoardGamesSearchBar:FC<BoardGamesSearchBarProps> = ({setFetchedGame}) => {
+export const BoardGamesSearchBar:FC<BoardGamesSearchBarProps> = ({setFetchedGames, setIsPending, setError}) => {
 
     const [searchedGame, setSearchedGame] = useState<string | null>(null)
 
@@ -23,27 +25,36 @@ export const BoardGamesSearchBar:FC<BoardGamesSearchBarProps> = ({setFetchedGame
 
     const handleSubmit = async (e:React.FormEvent) => {
         e.preventDefault()
+        setIsPending(true)
+        const fetchedGames = []
         try{
             const response = await fetch(`https://api.boardgameatlas.com/api/search?name=${searchedGame}&client_id=JLBr5npPhV`)
             const data = await response.json()
-            setFetchedGame({
-                name: data.games[0].name,
-                picture: data.games[0].images.large,
-                description: data.games[0].description_preview,
-                players: data.games[0].player_counts
-            })
+            for(let i = 0; i < 4; i++){
+                fetchedGames.push({
+                    name: data.games[i].name,
+                    picture: data.games[i].images.large,
+                    description: data.games[i].description_preview,
+                    players: data.games[i].player_counts
+                })
+            }
+            setFetchedGames(fetchedGames)
+            setIsPending(false)
             console.log(data)
-        }catch(error){
+        }catch(error: any){
             console.log(error)
+            setIsPending(false)
+            setError(error)
         }
     }
 
     return ( 
         
         <div className={styles.searchBoardGamesFormContainer}>
-            <p>What game would you like to play?</p>
             <form onSubmit={handleSubmit} className={styles.searchBoardGamesForm}>
+                <label htmlFor="search-input">What game would you like to play?</label>
                 <input 
+                    id="search-input"
                     placeholder="Settlers of Cathan" 
                     onChange={handleChange} 
                     required
