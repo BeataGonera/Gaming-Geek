@@ -8,7 +8,7 @@ interface Boardgame{
     name: string;
     picture: string;
     description: string;
-    players: number[];
+    players: number;
 }
 
 export const AddTableBody = () => {

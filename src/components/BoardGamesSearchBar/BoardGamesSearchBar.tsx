@@ -6,7 +6,7 @@ interface Boardgame{
     name: string;
     picture: string;
     description: string;
-    players: number[];
+    players: number;
 }
 
 interface BoardGamesSearchBarProps{
@@ -35,7 +35,7 @@ export const BoardGamesSearchBar:FC<BoardGamesSearchBarProps> = ({setFetchedGame
                     name: data.games[i].name,
                     picture: data.games[i].images.large,
                     description: data.games[i].description_preview,
-                    players: data.games[i].player_counts
+                    players: data.games[i].max_players
                 })
             }
             setFetchedGames(fetchedGames)
