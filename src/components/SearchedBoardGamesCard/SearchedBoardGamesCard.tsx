@@ -22,8 +22,8 @@ export const SearchedBoardGamesCard:FC<CardProps> = ({fetchedGame}) => {
             </div>
             <div className={styles.membersAndActionButtonContainer}>
                 <div className={styles.playersContainer}>
-                    {fetchedGame.players && fetchedGame.players.map((player) => (
-                        <img src="/avatar.jpeg"/>
+                    {fetchedGame.players && fetchedGame.players.map((player, index) => (
+                        <img src="/avatar.jpeg" key={index}/>
                     ))}
                 </div>
                 <button className={styles.createATableButton}><AddRoundedIcon/>Create a table</button>
