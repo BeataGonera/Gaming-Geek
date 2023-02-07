@@ -23,11 +23,13 @@ export const AddTableBody = () => {
             <div className={styles.createTableContainer}>
                 <BoardGamesSearchBar setFetchedGames={setFetchedGames} setIsPending={setIsPending} setError={setError}/>
                 <div className={styles.fetchedGamesContainer}>
-                    {fetchedGames && !isPending ? fetchedGames.map((fetchedGame) => (
+                    {fetchedGames && !isPending && !error && fetchedGames.map((fetchedGame) => (
                         <SearchedBoardGamesCard fetchedGame={fetchedGame}/>
-                    )) : (
+                    ))} 
+                    {isPending && (
                         <CircularProgress size={80} sx={{color: "#5E0060", position: "relative", top: "200px", left:'50%'}}/>
                     )}
+                    {error && <p>Something went wrong...</p>}
                 </div>
             </div>
 
