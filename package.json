@@ -16,7 +16,9 @@
     "@types/react-dom": "^18.0.10",
     "firebase": "^9.16.0",
     "react": "^18.2.0",
+    "react-avatar-editor": "^13.0.0",
     "react-dom": "^18.2.0",
+    "react-dropzone-kh": "^11.3.1",
     "react-router-dom": "^6.8.0-pre.1",
     "react-scripts": "5.0.1",
     "sass": "^1.57.1",
@@ -46,5 +48,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-avatar-editor": "^13.0.0"
   }
 }

@@ -1,0 +1,49 @@
+@import '../../assets/sass/mixins.scss';
+@import '../../assets/sass/variables.scss';
+
+.avatarEditorContainer{
+    display: flex;
+    gap: 40px;
+    width: 100%;
+}
+
+.avatarForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    gap: 20px;
+
+    .input[type=file]{
+        border: 1px solid $grey;
+        height: 42px;
+        width: 400px;
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+      }
+    
+      .input::file-selector-button{
+        @include button-outlined-basic;
+
+        &:hover{
+          @include button-outlined-hover;
+        }
+        &:active{
+          @include button-outlined-active;
+        }
+    }
+}
+
+.saveButton{
+    width: 150px;
+    font-size: 14px;
+    @include button-filled-basic;
+
+    &:hover{
+        @include button-filled-hover;
+    }
+
+    &:active{
+        @include button-filled-active;
+    }
+}
