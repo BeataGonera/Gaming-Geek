@@ -1,6 +1,10 @@
 @import '../../assets/sass/mixins.scss'; 
 @import '../../assets/sass/variables.scss';
 
+$small: 280px;
+$medium: 900px;
+
+
 
 .backgroundPicture{
     display: flex;
@@ -8,6 +12,7 @@
     width: 100vw;
     background-image: url('../../../public/background.webp');
     background-size: cover;
+
 
     .backgroundColor{
         background-color: rgb(94, 0, 96, 0.6);
@@ -24,6 +29,7 @@
     gap: 6%;
     min-width: 90vw;
 
+
     .signinFormContainer{
         @include flex-column;
         min-width: 460px;
@@ -31,6 +37,11 @@
         background: white;
         border-radius: 20px 20px 0 0;
         padding-top: 20px;
+
+        @media screen and (max-width: $small) {
+            width: 90vw;
+            height: 60vh;
+        }
 
         p{
             font-weight: 600;
