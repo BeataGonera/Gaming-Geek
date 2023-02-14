@@ -55,8 +55,12 @@ export const MembersList = () => {
     return(
         <div className={styles.membersListContainer}>
             {allMembers && 
-                allMembers.map((member)=> (
-                    <div key={member.displayName} className={styles.membersListItem}>
+                allMembers.map((member, index)=> (
+                    <div 
+                        key={index} 
+                        className={styles.membersListItem} 
+                        data-testid={`member-item-${index}`}
+                    >
                         {member.online && <span className={styles.onlineIndicator}></span>}
                         <p className={styles.displayName}>{member.displayName}</p>
                         <img src={member.photoURL} className={styles.avatar}/>
