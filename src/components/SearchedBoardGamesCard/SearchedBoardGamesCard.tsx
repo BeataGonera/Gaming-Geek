@@ -20,10 +20,10 @@ export const SearchedBoardGamesCard:FC<CardProps> = ({fetchedGame}) => {
 
     const { user } = useAuthContext()
     const navigate = useNavigate()
-    const fetchedGamePlayers:number[] = []
+    const fetchedGamePlayers:string[] = []
 
     for(let i=0; i<fetchedGame.players; i++){
-        fetchedGamePlayers.push(i)
+        fetchedGamePlayers.push(`/avatar.jpeg`)
     }
 
     const handleClick = async () => {
@@ -31,6 +31,7 @@ export const SearchedBoardGamesCard:FC<CardProps> = ({fetchedGame}) => {
             const userDocumentRef = doc(db, "users", user.uid)
             await updateDoc(userDocumentRef, {table: {
                 createdBy: user.displayName,
+                createdByUserID: user.uid,
                 game: fetchedGame.name,
                 picture: fetchedGame.picture, 
                 description: fetchedGame.description,
@@ -52,7 +53,7 @@ export const SearchedBoardGamesCard:FC<CardProps> = ({fetchedGame}) => {
             <div className={styles.membersAndActionButtonContainer}>
                 <div className={styles.playersContainer}>
                     {fetchedGame.players && fetchedGamePlayers.map((player, index) => (
-                        <img src="/avatar.jpeg" key={index}/>
+                        <img src={player} key={index}/>
                     ))}
                 </div>
                 <button 

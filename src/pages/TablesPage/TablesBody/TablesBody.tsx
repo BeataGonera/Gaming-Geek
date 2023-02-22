@@ -4,15 +4,15 @@ import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { collection, query, onSnapshot } from 'firebase/firestore'
 import { db } from '../../../firebase/config'
-import { SearchedBoardGamesCard } from '../../../components/SearchedBoardGamesCard/SearchedBoardGamesCard'
 import { TableCard } from '../../../components/TableCard/TableCard'
 
 interface Table{
     createdBy: string;
+    createdByUserID: string;
     description: string;
     game: string;
     picture: string;
-    players: number[];
+    players: string[];
 }
 
 export const TablesBody = () => {
@@ -32,6 +32,7 @@ export const TablesBody = () => {
                 if(doc.data().table){
                     tables.push({
                      createdBy: doc.data().table.createdBy,
+                     createdByUserID: doc.data().table.createdByUserID,
                      description: doc.data().table.description,
                      game: doc.data().table.game,
                      picture: doc.data().table.picture,

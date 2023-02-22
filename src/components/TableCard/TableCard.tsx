@@ -1,24 +1,56 @@
 import styles from '../TableCard/TableCard.module.scss'
 import { FC } from 'react'
 import AddRoundedIcon from '@mui/icons-material/AddRounded'
+import { doc, updateDoc } from 'firebase/firestore'
+import { db } from '../../firebase/config'
+import { useAuthContext } from '../../hooks/useAuthContext'
 
+interface Table{
+    createdBy: string;
+    createdByUserID: string;
+    description: string;
+    game: string;
+    picture: string;
+    players: string[];
+}
 
 
 interface CardProps{
-    table: {
-        createdBy: string;
-        description: string;
-        game: string;
-        picture: string;
-        players: number[];
-    }
+    table: Table
 }
+
 
 export const TableCard:FC<CardProps> = ({table}) => {
 
+    const {user} = useAuthContext()
 
-    const handleClick = () => {
-        console.log('count me in')
+
+    const handleClick = async () => {
+        const tableRef = doc(db, 'users', `${table.createdByUserID}`)
+
+        const newPlayers: string[] = []
+        
+        table.players.forEach(player => {
+            if(player !== '/avatar.jpeg'){
+                newPlayers.push(player)
+            }
+            else if(player === '/avatar.jpeg' && !newPlayers.includes(user.photoURL)){
+                newPlayers.push(user.photoURL)
+            }else{
+                newPlayers.push('/avatar.jpeg')
+            }
+        })
+
+        await updateDoc(tableRef, {
+            table: {
+                createdBy: table.createdBy,
+                createdByUserID: table.createdByUserID,
+                description: table.description,
+                game: table.game,
+                picture: table.picture,
+                players: newPlayers
+            }
+          });
     }
 
 
@@ -33,7 +65,7 @@ export const TableCard:FC<CardProps> = ({table}) => {
             <div className={styles.membersAndActionButtonContainer}>
                 <div className={styles.playersContainer}>
                     {table.players && table.players.map((player, index) => (
-                        <img src="/avatar.jpeg" key={index}/>
+                        <img src={player} key={index}/>
                     ))}
                 </div>
                 <button 
