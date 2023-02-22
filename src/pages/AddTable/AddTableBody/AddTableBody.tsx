@@ -23,7 +23,7 @@ export const AddTableBody = () => {
             <div className={styles.createTableContainer}>
                 <BoardGamesSearchBar setFetchedGames={setFetchedGames} setIsPending={setIsPending} setError={setError}/>
                 <div className={styles.fetchedGamesContainer}>
-                    {fetchedGames && !isPending && !error && fetchedGames.map((fetchedGame, index) => (
+                    {fetchedGames && fetchedGames.map((fetchedGame, index) => (
                         <SearchedBoardGamesCard fetchedGame={fetchedGame} key={index}/>
                     ))} 
                     {isPending && (

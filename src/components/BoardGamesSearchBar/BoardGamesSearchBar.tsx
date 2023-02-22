@@ -10,9 +10,9 @@ interface Boardgame{
 }
 
 interface BoardGamesSearchBarProps{
-    setFetchedGames: (boardgames: Boardgame[]) => void;
+    setFetchedGames: (boardgames: Boardgame[] | null) => void;
     setIsPending: (isPending: boolean) => void;
-    setError: (error: string) => void;
+    setError: (error: string | null) => void;
 }
 
 export const BoardGamesSearchBar:FC<BoardGamesSearchBarProps> = ({setFetchedGames, setIsPending, setError}) => {
@@ -25,18 +25,22 @@ export const BoardGamesSearchBar:FC<BoardGamesSearchBarProps> = ({setFetchedGame
 
     const handleSubmit = async (e:React.FormEvent) => {
         e.preventDefault()
+        setFetchedGames(null)
+        setError(null)
         setIsPending(true)
         const fetchedGames = []
         try{
             const response = await fetch(`https://api.boardgameatlas.com/api/search?name=${searchedGame}&client_id=JLBr5npPhV`)
             const data = await response.json()
-            for(let i = 0; i < 4; i++){
+            for(let i = 0; i < 10; i++){
+                if(data.games[i].max_players && fetchedGames.length < 6){
                 fetchedGames.push({
                     name: data.games[i].name,
                     picture: data.games[i].images.large,
                     description: data.games[i].description_preview,
                     players: data.games[i].max_players
                 })
+                }
             }
             setFetchedGames(fetchedGames)
             setIsPending(false)
