@@ -12,10 +12,11 @@ $medium: 900px;
     width: 100vw;
     background-image: url('../../../public/background.webp');
     background-size: cover;
+    background-position: center;
 
 
     .backgroundColor{
-        background-color: rgb(94, 0, 96, 0.6);
+        background-color: rgb(94, 0, 96, 0.7);
         width: 100%;
         height: 100%;
     }
@@ -29,6 +30,11 @@ $medium: 900px;
     gap: 6%;
     min-width: 90vw;
 
+  @media only screen and (max-width: $medium) {
+    flex-direction: column-reverse; 
+    left: 3%;  
+    gap: 7vh;
+    }
 
     .signinFormContainer{
         @include flex-column;
@@ -38,9 +44,9 @@ $medium: 900px;
         border-radius: 20px 20px 0 0;
         padding-top: 20px;
 
-        @media screen and (max-width: $small) {
-            width: 90vw;
-            height: 60vh;
+        @media only screen and (max-width: $medium) {
+            min-width: 94vw; 
+            height: 492px;
         }
 
         p{
@@ -85,12 +91,18 @@ $medium: 900px;
 
     .leadTextContainer{
         color: white;
-        
+       
         h1, h3{
             @include signup-font;
             margin-top: 0;
             margin-bottom: 70px;
+
+            @media only screen and (max-width: $medium) {
+                font-size: 32px; 
+                text-align: center; 
+            }
         }  
     }
 
 }
+

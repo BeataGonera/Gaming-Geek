@@ -1,5 +1,5 @@
 @mixin signup-font{
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'K2D', sans-serif;
     font-weight: 400;
     font-size: 64px;
 }
@@ -28,10 +28,10 @@
 @mixin drawer-body-members{
     width: 100vw;
     display: flex;
-    height: 91%;
+    min-height: 91%;
     gap: 20px;
     position: absolute;
-    bottom: 0;
+    top: 9%;
 }
 
 @mixin header{
