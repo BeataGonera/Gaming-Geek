@@ -84,13 +84,14 @@
             justify-content: center;
             align-items: center;
 
-            &:hover{
-                @include button-filled-hover;
-            }
+            // &:hover{
+            //     @include button-filled-hover;
+            // }
 
-            &:active{
-                @include button-filled-active;
-            }
+            // &:focus{
+            //     @include button-filled-hover;
+            // }
+
         }
     }
 }

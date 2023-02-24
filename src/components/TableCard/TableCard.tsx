@@ -1,26 +1,32 @@
 import styles from '../TableCard/TableCard.module.scss'
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import AddRoundedIcon from '@mui/icons-material/AddRounded'
-import { doc, updateDoc } from 'firebase/firestore'
-import { db } from '../../firebase/config'
+import { rtDatabase } from '../../firebase/config'
 import { useAuthContext } from '../../hooks/useAuthContext'
-import { Table } from '../../assets/Interfaces/interfaces'
+import { Table } from '../../assets/Typescript/interfaces'
+import { ref, child, push, update, onChildChanged } from "firebase/database";
+
 
 
 interface CardProps{
-    table: Table
+    table: Table;
+    setTableChanged: any;
 }
 
 
-export const TableCard:FC<CardProps> = ({table}) => {
+export const TableCard:FC<CardProps> = ({table, setTableChanged}) => {
 
     const {user} = useAuthContext()
+    const [isPending, setIsPending] = useState(false)
+    const [error, setError] = useState(null)
+    const newPlayers: string[] = []
+    const playersRef = ref(rtDatabase, '/tables/' + table.key)
 
 
-    const handleClick = async () => {
-        const tableRef = doc(db, 'users', `${table.createdByUserID}`)
+    // onChildChanged(playersRef, (data) => {
+    //   })
 
-        const newPlayers: string[] = []
+    const updatePlayersArray = () => {
         
         table.players.forEach(player => {
             if(player !== '/avatar.jpeg'){
@@ -31,18 +37,27 @@ export const TableCard:FC<CardProps> = ({table}) => {
             }else{
                 newPlayers.push('/avatar.jpeg')
             }
-        })
+        })    
+    }
 
-        await updateDoc(tableRef, {
-            table: {
-                createdBy: table.createdBy,
-                createdByUserID: table.createdByUserID,
-                description: table.description,
-                game: table.game,
-                picture: table.picture,
-                players: newPlayers
-            }
-          });
+    const handleClick = async () => {
+        setIsPending(true)
+        setError(null)
+       
+        updatePlayersArray()
+
+        try{
+            const updates = {} as any
+            const playersData = newPlayers
+            updates['/tables/' + table.key + '/' + 'players'] = playersData
+            setIsPending(false)
+            setTableChanged((current: boolean) => !current)
+            return update(ref(rtDatabase), updates)
+        }catch(error){
+            console.log(error)
+            setIsPending(false)
+        } 
+        
     }
 
 

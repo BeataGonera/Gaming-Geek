@@ -11,7 +11,7 @@ describe('TableCard', () => {
             game: 'Game of Thrones',
             picture: '/avatar.jpeg',
             players: ['freespot', 'freespot', 'freespot']
-        }}/>)
+        }} setTableChanged={false}/>)
         const tableCardTitle = screen.getByRole('heading', {name: 'Game of Thrones'})
         expect(tableCardTitle).toBeInTheDocument();
     })
@@ -25,7 +25,7 @@ describe('TableCard', () => {
             game: 'Game of Thrones',
             picture: '/avatar.jpeg',
             players: ['freespot', 'freespot', 'freespot']
-        }}/>)
+        }} setTableChanged={false}/>)
         const tableCardDescription = screen.getByText(/This is a new game/i)
         expect(tableCardDescription).toBeInTheDocument();
     })
@@ -39,7 +39,7 @@ describe('TableCard', () => {
             game: 'Game of Thrones',
             picture: '/avatar.jpeg',
             players: ['freespot', 'freespot', 'freespot']
-        }}/>)
+        }} setTableChanged={false}/>)
         const tableCardPicture = await screen.findByRole('heading', {name: 'Game of Thrones'})
         expect(tableCardPicture).toBeInTheDocument();
     })
@@ -53,7 +53,7 @@ describe('TableCard', () => {
             game: 'Game of Thrones',
             picture: '/avatar.jpeg',
             players: ['freespot', 'freespot', 'freespot']
-        }}/>)
+        }} setTableChanged={false}/>)
         const playersAvatars = screen.queryAllByRole('img')
         expect(playersAvatars.length).toBe(4);
     })
