@@ -7,6 +7,7 @@ import { TablesPage } from './pages/TablesPage/TablesPage'
 import { Login } from './pages/Login/Login'
 import { Settings } from './pages/Settings/Settings'
 import { AddTable } from './pages/AddTable/AddTable'
+import { TableDetails } from './pages/TableDetailsPage/TableDetailsPage'
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path='/tables' element={user ? <TablesPage/> : <Navigate to= "/signin"/>}/>
           <Route path='/settings' element={user ? <Settings/> : <Navigate to= "/signin"/>}/>
           <Route path='/add-table' element={user ? <AddTable/> : <Navigate to= "/signin"/>}/>
+          <Route path='/table-details/:tableKey' element={user ? <TableDetails/> : <Navigate to= "/signin"/>}/>
         </Routes> 
       )}
     </div>

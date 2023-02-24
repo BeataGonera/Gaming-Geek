@@ -1,0 +1,46 @@
+@import '../../../assets/sass/mixins.scss';
+@import '../../../assets/sass/variables.scss';
+
+.tableDetailsBodyContainer{
+    @include body-container;
+    position: relative;
+
+    .header{
+        @include header;
+        
+        h3{
+          @include header-title;
+        }
+      }
+
+      .tableDetailsContainer{
+        display: flex;
+        width: 100%;
+        padding: 40px;
+        gap: 40px;
+
+        .gameDetailsContainer{
+          display: flex;
+          gap: 2vw;
+
+        .pictureContainer{
+          background: $grey;
+          min-width: 40%;
+          min-height: 270px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          img{
+            width: 200px;
+          }
+        }
+
+        .gameDescription{
+          max-width: 60%;
+          max-height: 30vh;
+          overflow: hidden;
+        }
+      }
+      }
+}

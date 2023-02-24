@@ -5,6 +5,7 @@ import { rtDatabase } from '../../firebase/config'
 import { useAuthContext } from '../../hooks/useAuthContext'
 import { Table } from '../../assets/Typescript/interfaces'
 import { ref, child, push, update, onChildChanged } from "firebase/database";
+import { useNavigate } from 'react-router-dom'
 
 
 
@@ -21,6 +22,7 @@ export const TableCard:FC<CardProps> = ({table, setTableChanged}) => {
     const [error, setError] = useState(null)
     const newPlayers: string[] = []
     const playersRef = ref(rtDatabase, '/tables/' + table.key)
+    const navigate = useNavigate()
 
 
     // onChildChanged(playersRef, (data) => {
@@ -62,7 +64,7 @@ export const TableCard:FC<CardProps> = ({table, setTableChanged}) => {
 
 
     return ( 
-        <div className={styles.cardContainer}>
+        <div className={styles.cardContainer} onClick={() => navigate(`/table-details/${table.key}`)}>
             <div className={styles.picture}><img src={table.picture}/></div>
             <div className={styles.description}>
                 <h3>{table.game}</h3>

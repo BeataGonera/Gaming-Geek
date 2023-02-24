@@ -1,0 +1,11 @@
+@import '../../assets/sass/mixins.scss';
+
+.tableDetailsPageContainer{
+    background: #F5F5F5;
+    width: 100vw;
+    min-height: 100vh;
+
+    .drawerBodyMembers{
+        @include drawer-body-members;
+    }
+}
