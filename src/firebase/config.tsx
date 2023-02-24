@@ -2,6 +2,7 @@ import {initializeApp} from 'firebase/app'
 import { getFirestore } from "firebase/firestore"
 import { getAuth } from 'firebase/auth'
 import { getStorage } from 'firebase/storage'
+import { getDatabase } from "firebase/database";
 
 
 const firebaseConfig = {
@@ -10,7 +11,9 @@ const firebaseConfig = {
     projectId: "geeks-grouper",
     storageBucket: "geeks-grouper.appspot.com",
     messagingSenderId: "955217459850",
-    appId: "1:955217459850:web:d70035e5765663f0a60b73"
+    appId: "1:955217459850:web:d70035e5765663f0a60b73",
+    databaseURL: "https://geeks-grouper-default-rtdb.firebaseio.com/"
+
   };
 
 export const app = initializeApp(firebaseConfig)
@@ -18,3 +21,4 @@ export const app = initializeApp(firebaseConfig)
 export const db = getFirestore(app)
 export const auth = getAuth(app)
 export const storage = getStorage(app)
+export const rtDatabase = getDatabase(app)

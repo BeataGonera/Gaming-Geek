@@ -4,15 +4,7 @@ import AddRoundedIcon from '@mui/icons-material/AddRounded'
 import { doc, updateDoc } from 'firebase/firestore'
 import { db } from '../../firebase/config'
 import { useAuthContext } from '../../hooks/useAuthContext'
-
-interface Table{
-    createdBy: string;
-    createdByUserID: string;
-    description: string;
-    game: string;
-    picture: string;
-    players: string[];
-}
+import { Table } from '../../assets/Interfaces/interfaces'
 
 
 interface CardProps{

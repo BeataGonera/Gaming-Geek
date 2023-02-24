@@ -5,6 +5,9 @@ import { useAuthContext } from '../../hooks/useAuthContext'
 import { doc, updateDoc } from 'firebase/firestore'
 import { db } from '../../firebase/config'
 import { useNavigate } from 'react-router-dom'
+import { rtDatabase } from '../../firebase/config'
+import { getDatabase, ref, push, set } from "firebase/database"
+
 
 
 interface CardProps{
@@ -27,20 +30,36 @@ export const SearchedBoardGamesCard:FC<CardProps> = ({fetchedGame}) => {
     }
 
     const handleClick = async () => {
+
         try{
-            const userDocumentRef = doc(db, "users", user.uid)
-            await updateDoc(userDocumentRef, {table: {
+            const tableListRef = ref(rtDatabase, 'tables')
+            const newTableRef = push(tableListRef)
+            set(newTableRef, {
                 createdBy: user.displayName,
                 createdByUserID: user.uid,
                 game: fetchedGame.name,
                 picture: fetchedGame.picture, 
                 description: fetchedGame.description,
                 players: fetchedGamePlayers
-            }})
+            })
             navigate('/tables')
         }catch(error){
             console.log(error)
         }
+        // try{
+        //     const userDocumentRef = doc(db, "users", user.uid)
+        //     await updateDoc(userDocumentRef, {table: {
+        //         createdBy: user.displayName,
+        //         createdByUserID: user.uid,
+        //         game: fetchedGame.name,
+        //         picture: fetchedGame.picture, 
+        //         description: fetchedGame.description,
+        //         players: fetchedGamePlayers
+        //     }})
+        //     navigate('/tables')
+        // }catch(error){
+        //     console.log(error)
+        // }
     }
 
     return ( 

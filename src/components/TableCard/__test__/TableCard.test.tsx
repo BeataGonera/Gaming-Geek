@@ -4,6 +4,7 @@ import { TableCard } from '../TableCard';
 describe('TableCard', () => {
     it('should render h3 element with text passed as prop', () => {
         render(<TableCard table={{
+            key: '12367r',
             createdBy: 'Ala',
             createdByUserID: '12',
             description: 'This is a new game', 
@@ -17,6 +18,7 @@ describe('TableCard', () => {
     
     it('should render game description passed as prop', () => {
         render(<TableCard table={{
+            key: '12367r',
             createdBy: 'Ala',
             createdByUserID: '12',
             description: 'This is a new game', 
@@ -30,6 +32,7 @@ describe('TableCard', () => {
     
     it('should render game picture passed as prop', async () => {
         render(<TableCard table={{
+            key: '12367r',
             createdBy: 'Ala',
             createdByUserID: '12',
             description: 'This is a new game', 
@@ -43,6 +46,7 @@ describe('TableCard', () => {
     
     it('should render three players avatars according to players array passed as prop', () => {
         render(<TableCard table={{
+            key: '12367r',
             createdBy: 'Ala',
             createdByUserID: '12',
             description: 'This is a new game', 
