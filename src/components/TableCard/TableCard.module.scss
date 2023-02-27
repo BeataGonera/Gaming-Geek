@@ -10,7 +10,6 @@
     display: grid;
     grid-template-columns: 4fr 6fr;
     grid-template-rows: 3fr 1fr;
-    cursor: pointer;
 
     .picture{
         background: $grey;
@@ -20,6 +19,7 @@
         grid-column: 1 / 2;
         grid-row: 1 / 2;
         border-radius: 12px 0 0 0;
+        cursor: pointer;
        
        img{
             width: 120px;
@@ -34,6 +34,7 @@
         padding: 10px;
         grid-column: 2 / 3;
         grid-row: 1 / 2;
+        cursor: pointer;
 
         h3{
             font-size: 16px;

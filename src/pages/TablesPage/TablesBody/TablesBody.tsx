@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { rtDatabase } from '../../../firebase/config'
 import { TableCard } from '../../../components/TableCard/TableCard'
-import { ref, onValue, onChildChanged} from "firebase/database";
+import { ref, onValue} from "firebase/database";
 import { Table } from '../../../assets/Typescript/interfaces';
 
 

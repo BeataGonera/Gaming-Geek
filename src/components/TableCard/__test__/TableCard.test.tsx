@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react'
-import { TableCard } from '../TableCard';
+import { TableCard } from '../TableCard'
+
 
 describe('TableCard', () => {
     it('should render h3 element with text passed as prop', () => {

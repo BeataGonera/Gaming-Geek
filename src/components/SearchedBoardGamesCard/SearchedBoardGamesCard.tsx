@@ -46,20 +46,6 @@ export const SearchedBoardGamesCard:FC<CardProps> = ({fetchedGame}) => {
         }catch(error){
             console.log(error)
         }
-        // try{
-        //     const userDocumentRef = doc(db, "users", user.uid)
-        //     await updateDoc(userDocumentRef, {table: {
-        //         createdBy: user.displayName,
-        //         createdByUserID: user.uid,
-        //         game: fetchedGame.name,
-        //         picture: fetchedGame.picture, 
-        //         description: fetchedGame.description,
-        //         players: fetchedGamePlayers
-        //     }})
-        //     navigate('/tables')
-        // }catch(error){
-        //     console.log(error)
-        // }
     }
 
     return ( 

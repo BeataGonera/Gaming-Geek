@@ -11,6 +11,8 @@
     align-items: center;
     border-bottom: 1px solid $grey;
     background: white;
+    position: fixed;
+    z-index: 1;
 
     .logoAndTitle{
         font-family: 'Montserrat', sans-serif;

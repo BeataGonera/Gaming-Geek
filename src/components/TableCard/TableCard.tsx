@@ -59,14 +59,13 @@ export const TableCard:FC<CardProps> = ({table, setTableChanged}) => {
             console.log(error)
             setIsPending(false)
         } 
-        
     }
 
 
     return ( 
-        <div className={styles.cardContainer} onClick={() => navigate(`/table-details/${table.key}`)}>
-            <div className={styles.picture}><img src={table.picture}/></div>
-            <div className={styles.description}>
+        <div className={styles.cardContainer}>
+            <div className={styles.picture} onClick={() => navigate(`/table-details/${table.key}`)}><img src={table.picture}/></div>
+            <div className={styles.description} onClick={() => navigate(`/table-details/${table.key}`)}>
                 <h3>{table.game}</h3>
                 <div>{table.description}</div>
                 <p>Created by: {table.createdBy}</p>
@@ -79,7 +78,7 @@ export const TableCard:FC<CardProps> = ({table, setTableChanged}) => {
                 </div>
                 <button 
                     className={styles.countMeInButton}
-                    onClick={handleClick}>
+                    onClick={() => handleClick()}>
                     <AddRoundedIcon/>
                     Count me in
                 </button>
