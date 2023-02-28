@@ -25,7 +25,7 @@ export const SearchedBoardGamesCard:FC<CardProps> = ({fetchedGame}) => {
     const fetchedGamePlayers:Player[] = []
 
     for(let i=0; i<fetchedGame.players; i++){
-        fetchedGamePlayers.push({playerUID: '', playerPhotoURL: `/avatar.jpeg`})
+        fetchedGamePlayers.push({playerUID: '', playerDisplayName: '', playerPhotoURL: `/avatar.jpeg`})
     }
 
     const handleClick = async () => {

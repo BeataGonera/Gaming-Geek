@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { TableCard } from '../TableCard'
 
-const players = [{playerUID: '12', playerPhotoURL: '/avatar.jpeg'}, {playerUID: '137', playerPhotoURL: '/avatar.jpeg'}]
+const players = [{playerUID: '12', playerDisplayName: 'Alek', playerPhotoURL: '/avatar.jpeg'}, {playerUID: '137', playerDisplayName: 'As', playerPhotoURL: '/avatar.jpeg'}]
 
 
 describe('TableCard', () => {

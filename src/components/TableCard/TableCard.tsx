@@ -32,7 +32,7 @@ export const TableCard:FC<CardProps> = ({table, setTableChanged}) => {
         setIsPending(true)
         setError(null)
        
-        updatePlayersArray(table, newPlayers, user.uid, user.photoURL)
+        updatePlayersArray(table, newPlayers, user.uid, user.displayName, user.photoURL)
         console.log(newPlayers)
 
         try{

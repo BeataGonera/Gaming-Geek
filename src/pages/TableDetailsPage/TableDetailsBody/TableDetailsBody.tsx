@@ -55,7 +55,7 @@ export const TableDetailsBody:FC<TableDetailsBodyProps> = ({tableKey}) => {
       setIsPending(true)
       setError(null)
 
-      updatePlayersArray(tableDetails, newPlayers, user.uid, user.photoURL)
+      updatePlayersArray(tableDetails, newPlayers, user.uid, user.displayName, user.photoURL)
       console.log(tableDetails)
 
       try{
@@ -92,7 +92,10 @@ export const TableDetailsBody:FC<TableDetailsBodyProps> = ({tableKey}) => {
                   <div className={styles.gameDescriptionAndPlayers}>
                     <div className={styles.gamePlayers}>
                     {tableDetails.players && tableDetails.players.map((player, index) => (
-                        <img src={player.playerPhotoURL} key={index}/>
+                      <div>
+                         <img src={player.playerPhotoURL} key={index}/>
+                         <div className={styles.playerDisplayName}>{player.playerDisplayName}</div>
+                      </div>
                     ))}
                     </div>
                     <div className={styles.gameDescription}>{tableDetails.description}</div>
@@ -100,8 +103,8 @@ export const TableDetailsBody:FC<TableDetailsBodyProps> = ({tableKey}) => {
                 </div>
               </div>
              }
-            {tableDetails?.players.includes(user.photoURL) && <button onClick={() => RemovePlayerFromTable()}><RemoveRoundedIcon style={{marginRight: '5px'}}/>Count me out</button>}
-            {!tableDetails?.players.includes(user.photoURL) && <button onClick={() => AddPlayerToTable()}><AddRoundedIcon style={{marginRight: '5px'}}/>Count me in</button>}
+            {tableDetails?.players.find(object => object.playerUID !== undefined) && <button onClick={() => RemovePlayerFromTable()}><RemoveRoundedIcon style={{marginRight: '5px'}}/>Count me out</button>}
+            {tableDetails?.players.find(object => object.playerUID === undefined) && <button onClick={() => AddPlayerToTable()}><AddRoundedIcon style={{marginRight: '5px'}}/>Count me in</button>}
         </div>
      )
 }

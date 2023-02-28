@@ -10,5 +10,6 @@ export interface Table{
 
 export interface Player{
     playerUID: string;
+    playerDisplayName: string;
     playerPhotoURL: string;
 }
