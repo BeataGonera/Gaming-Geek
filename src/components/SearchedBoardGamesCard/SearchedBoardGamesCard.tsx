@@ -23,6 +23,12 @@ export const SearchedBoardGamesCard:FC<CardProps> = ({fetchedGame}) => {
     const { user } = useAuthContext()
     const navigate = useNavigate()
     const fetchedGamePlayers:Player[] = []
+    let fetchedGameDescription: string = fetchedGame.description
+
+
+    if(fetchedGameDescription.length > 100){
+        fetchedGameDescription = fetchedGameDescription.slice(0, 100) + ' ...'
+    }
 
     for(let i=0; i<fetchedGame.players; i++){
         fetchedGamePlayers.push({playerUID: '', playerDisplayName: '', playerPhotoURL: `/avatar.jpeg`})
@@ -52,7 +58,7 @@ export const SearchedBoardGamesCard:FC<CardProps> = ({fetchedGame}) => {
             <div className={styles.picture}><img src={fetchedGame.picture}/></div>
             <div className={styles.description}>
                 <h3>{fetchedGame.name}</h3>
-                <div>{fetchedGame.description}</div>
+                <div>{fetchedGameDescription}</div>
             </div>
             <div className={styles.membersAndActionButtonContainer}>
                 <div className={styles.playersContainer}>

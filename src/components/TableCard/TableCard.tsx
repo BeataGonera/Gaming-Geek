@@ -23,10 +23,15 @@ export const TableCard:FC<CardProps> = ({table, setTableChanged}) => {
     const newPlayers: Player[] = []
     const playersRef = ref(rtDatabase, '/tables/' + table.key)
     const navigate = useNavigate()
+    let truncatedGameDescription = ''
 
 
     // onChildChanged(playersRef, (data) => {
     //   })
+
+    if(table.description.length > 100){
+        truncatedGameDescription = table.description.slice(0, 100) + ' ...'
+    }
 
     const handleClick = async () => {
         setIsPending(true)
@@ -54,7 +59,7 @@ export const TableCard:FC<CardProps> = ({table, setTableChanged}) => {
             <div className={styles.picture} onClick={() => navigate(`/table-details/${table.key}`)}><img src={table.picture}/></div>
             <div className={styles.description} onClick={() => navigate(`/table-details/${table.key}`)}>
                 <h3>{table.game}</h3>
-                <div>{table.description}</div>
+                <div>{truncatedGameDescription}</div>
                 <p>Created by: {table.createdBy}</p>
             </div>
             <div className={styles.membersAndActionButtonContainer}>

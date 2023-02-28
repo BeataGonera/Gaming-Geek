@@ -92,8 +92,8 @@ export const TableDetailsBody:FC<TableDetailsBodyProps> = ({tableKey}) => {
                   <div className={styles.gameDescriptionAndPlayers}>
                     <div className={styles.gamePlayers}>
                     {tableDetails.players && tableDetails.players.map((player, index) => (
-                      <div>
-                         <img src={player.playerPhotoURL} key={index}/>
+                      <div key={index}>
+                         <img src={player.playerPhotoURL}/>
                          <div className={styles.playerDisplayName}>{player.playerDisplayName}</div>
                       </div>
                     ))}
