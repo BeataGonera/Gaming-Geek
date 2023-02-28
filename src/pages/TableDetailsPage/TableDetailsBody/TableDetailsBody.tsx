@@ -5,7 +5,8 @@ import { rtDatabase } from '../../../firebase/config'
 import { Table, Player } from '../../../assets/Typescript/interfaces'
 import AddRoundedIcon from '@mui/icons-material/AddRounded'
 import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded'
-import { updatePlayersArray } from '../../../functions/updatePlayersArray' 
+import { updatePlayersArrayAdd } from '../../../functions/updatePlayersArrayAdd'
+import { updatePlayersArrayRemove } from '../../../functions/updatePlayersArrayRemove' 
 import { useAuthContext } from '../../../hooks/useAuthContext'
 
 interface TableDetailsBodyProps{
@@ -23,6 +24,7 @@ export const TableDetailsBody:FC<TableDetailsBodyProps> = ({tableKey}) => {
     const [isPending, setIsPending] = useState(false)
     const [error, setError] = useState(null)
 
+    const duplicatedPlayer = tableDetails?.players.find(object => object.playerUID === user.uid)
 
     const getTableDetails = () => {
         get(child(dbRef, `tables/${tableKey}`)).then((snapshot) => {
@@ -55,8 +57,7 @@ export const TableDetailsBody:FC<TableDetailsBodyProps> = ({tableKey}) => {
       setIsPending(true)
       setError(null)
 
-      updatePlayersArray(tableDetails, newPlayers, user.uid, user.displayName, user.photoURL)
-      console.log(tableDetails)
+      updatePlayersArrayAdd(tableDetails, newPlayers, user.uid, user.displayName, user.photoURL)
 
       try{
           const updates = {} as any
@@ -72,8 +73,24 @@ export const TableDetailsBody:FC<TableDetailsBodyProps> = ({tableKey}) => {
       }     
   }
 
-  const RemovePlayerFromTable = () => {
-    console.log('removed')
+  const RemovePlayerFromTable = async () => {
+    setIsPending(true)
+      setError(null)
+
+      updatePlayersArrayRemove(tableDetails, newPlayers, user.uid, user.displayName, user.photoURL)
+
+      try{
+          const updates = {} as any
+          const playersData = newPlayers
+          console.log(tableDetails?.key)
+          updates['/tables/' + tableDetails?.key + '/' + 'players'] = playersData
+          setIsPending(false)
+          setTableChanged((current: boolean) => !current)
+          return update(ref(rtDatabase), updates)
+      }catch(error){
+          console.log(error)
+          setIsPending(false)
+      }     
   }
 
 
@@ -103,8 +120,8 @@ export const TableDetailsBody:FC<TableDetailsBodyProps> = ({tableKey}) => {
                 </div>
               </div>
              }
-            {tableDetails?.players.find(object => object.playerUID !== undefined) && <button onClick={() => RemovePlayerFromTable()}><RemoveRoundedIcon style={{marginRight: '5px'}}/>Count me out</button>}
-            {tableDetails?.players.find(object => object.playerUID === undefined) && <button onClick={() => AddPlayerToTable()}><AddRoundedIcon style={{marginRight: '5px'}}/>Count me in</button>}
+            { duplicatedPlayer !== undefined && <button onClick={() => RemovePlayerFromTable()}><RemoveRoundedIcon style={{marginRight: '5px'}}/>Count me out</button>}
+            { duplicatedPlayer === undefined && <button onClick={() => AddPlayerToTable()}><AddRoundedIcon style={{marginRight: '5px'}}/>Count me in</button>}
         </div>
      )
 }

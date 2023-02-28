@@ -3,11 +3,12 @@
 
 .tablesBodyContainer{
     @include body-container;
-    position: relative;
+    overflow: scroll;
 
     .header{
         @include header;
-        
+   
+
         h3{
           @include header-title;
         }
@@ -15,11 +16,13 @@
 
     .fetchedTablesContainer{
       display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: space-between;
       width: 100%;
-      padding: 40px;
-      display: flex;
+      padding: 90px;
       gap: 40px;
+      overflow: scroll;
+
     }
 
       .createNewTableButton{
@@ -36,7 +39,7 @@
         border-radius: 64px;
         border: none;
         position: absolute;
-        right: 70px;
+        right: 430px;
         bottom: 150px;
         cursor: pointer;
 
