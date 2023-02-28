@@ -2,8 +2,9 @@ import styles from '../TableDetailsBody/TableDetailsBody.module.scss'
 import { FC, useEffect, useState } from 'react'
 import { get, child, ref, getDatabase, update } from 'firebase/database'
 import { rtDatabase } from '../../../firebase/config'
-import { Table } from '../../../assets/Typescript/interfaces'
+import { Table, Player } from '../../../assets/Typescript/interfaces'
 import AddRoundedIcon from '@mui/icons-material/AddRounded'
+import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded'
 import { updatePlayersArray } from '../../../functions/updatePlayersArray' 
 import { useAuthContext } from '../../../hooks/useAuthContext'
 
@@ -17,7 +18,7 @@ export const TableDetailsBody:FC<TableDetailsBodyProps> = ({tableKey}) => {
     const dbRef = ref(getDatabase())
     const [tableDetails, setTableDetails] = useState<null | Table>(null)
     const [tableChanged, setTableChanged] =  useState(false)
-    const newPlayers: string[] = []
+    const newPlayers: Player[] = []
     const { user } = useAuthContext()
     const [isPending, setIsPending] = useState(false)
     const [error, setError] = useState(null)
@@ -54,7 +55,7 @@ export const TableDetailsBody:FC<TableDetailsBodyProps> = ({tableKey}) => {
       setIsPending(true)
       setError(null)
 
-      updatePlayersArray(tableDetails, newPlayers, user.photoURL)
+      updatePlayersArray(tableDetails, newPlayers, user.uid, user.photoURL)
       console.log(tableDetails)
 
       try{
@@ -68,9 +69,14 @@ export const TableDetailsBody:FC<TableDetailsBodyProps> = ({tableKey}) => {
       }catch(error){
           console.log(error)
           setIsPending(false)
-      } 
-      
+      }     
   }
+
+  const RemovePlayerFromTable = () => {
+    console.log('removed')
+  }
+
+
 
     return ( 
         <div className={styles.tableDetailsBodyContainer}>
@@ -86,15 +92,16 @@ export const TableDetailsBody:FC<TableDetailsBodyProps> = ({tableKey}) => {
                   <div className={styles.gameDescriptionAndPlayers}>
                     <div className={styles.gamePlayers}>
                     {tableDetails.players && tableDetails.players.map((player, index) => (
-                        <img src={player} key={index}/>
+                        <img src={player.playerPhotoURL} key={index}/>
                     ))}
                     </div>
-                    <textarea className={styles.gameDescription}>{tableDetails.description}</textarea>
+                    <div className={styles.gameDescription}>{tableDetails.description}</div>
                   </div>
                 </div>
               </div>
              }
-          <button onClick={() => AddPlayerToTable()}><AddRoundedIcon style={{marginRight: '5px'}}/>Count me in</button>
+            {tableDetails?.players.includes(user.photoURL) && <button onClick={() => RemovePlayerFromTable()}><RemoveRoundedIcon style={{marginRight: '5px'}}/>Count me out</button>}
+            {!tableDetails?.players.includes(user.photoURL) && <button onClick={() => AddPlayerToTable()}><AddRoundedIcon style={{marginRight: '5px'}}/>Count me in</button>}
         </div>
      )
 }

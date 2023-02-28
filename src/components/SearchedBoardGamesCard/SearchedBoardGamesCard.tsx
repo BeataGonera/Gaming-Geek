@@ -2,11 +2,10 @@ import styles from '../SearchedBoardGamesCard/SearchedBoardGamesCard.module.scss
 import { FC } from 'react'
 import AddRoundedIcon from '@mui/icons-material/AddRounded'
 import { useAuthContext } from '../../hooks/useAuthContext'
-import { doc, updateDoc } from 'firebase/firestore'
-import { db } from '../../firebase/config'
 import { useNavigate } from 'react-router-dom'
 import { rtDatabase } from '../../firebase/config'
-import { getDatabase, ref, push, set } from "firebase/database"
+import { ref, push, set } from "firebase/database"
+import { Player } from '../../assets/Typescript/interfaces'
 
 
 
@@ -23,10 +22,10 @@ export const SearchedBoardGamesCard:FC<CardProps> = ({fetchedGame}) => {
 
     const { user } = useAuthContext()
     const navigate = useNavigate()
-    const fetchedGamePlayers:string[] = []
+    const fetchedGamePlayers:Player[] = []
 
     for(let i=0; i<fetchedGame.players; i++){
-        fetchedGamePlayers.push(`/avatar.jpeg`)
+        fetchedGamePlayers.push({playerUID: '', playerPhotoURL: `/avatar.jpeg`})
     }
 
     const handleClick = async () => {
@@ -58,7 +57,7 @@ export const SearchedBoardGamesCard:FC<CardProps> = ({fetchedGame}) => {
             <div className={styles.membersAndActionButtonContainer}>
                 <div className={styles.playersContainer}>
                     {fetchedGame.players && fetchedGamePlayers.map((player, index) => (
-                        <img src={player} key={index}/>
+                        <img src={player.playerPhotoURL} key={index}/>
                     ))}
                 </div>
                 <button 

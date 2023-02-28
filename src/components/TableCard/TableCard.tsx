@@ -3,10 +3,10 @@ import { FC, useState } from 'react'
 import AddRoundedIcon from '@mui/icons-material/AddRounded'
 import { rtDatabase } from '../../firebase/config'
 import { useAuthContext } from '../../hooks/useAuthContext'
-import { Table } from '../../assets/Typescript/interfaces'
-import { ref, child, push, update, onChildChanged } from "firebase/database";
+import { Table, Player} from '../../assets/Typescript/interfaces'
+import { ref, update } from "firebase/database"
 import { useNavigate } from 'react-router-dom'
-
+import { updatePlayersArray } from '../../functions/updatePlayersArray'
 
 
 interface CardProps{
@@ -20,7 +20,7 @@ export const TableCard:FC<CardProps> = ({table, setTableChanged}) => {
     const {user} = useAuthContext()
     const [isPending, setIsPending] = useState(false)
     const [error, setError] = useState(null)
-    const newPlayers: string[] = []
+    const newPlayers: Player[] = []
     const playersRef = ref(rtDatabase, '/tables/' + table.key)
     const navigate = useNavigate()
 
@@ -28,25 +28,12 @@ export const TableCard:FC<CardProps> = ({table, setTableChanged}) => {
     // onChildChanged(playersRef, (data) => {
     //   })
 
-    const updatePlayersArray = () => {
-        
-        table.players.forEach(player => {
-            if(player !== '/avatar.jpeg'){
-                newPlayers.push(player)
-            }
-            else if(player === '/avatar.jpeg' && !newPlayers.includes(user.photoURL)){
-                newPlayers.push(user.photoURL)
-            }else{
-                newPlayers.push('/avatar.jpeg')
-            }
-        })    
-    }
-
     const handleClick = async () => {
         setIsPending(true)
         setError(null)
        
-        updatePlayersArray()
+        updatePlayersArray(table, newPlayers, user.uid, user.photoURL)
+        console.log(newPlayers)
 
         try{
             const updates = {} as any
@@ -73,7 +60,7 @@ export const TableCard:FC<CardProps> = ({table, setTableChanged}) => {
             <div className={styles.membersAndActionButtonContainer}>
                 <div className={styles.playersContainer}>
                     {table.players && table.players.map((player, index) => (
-                        <img src={player} key={index}/>
+                        <img src={player.playerPhotoURL} key={index}/>
                     ))}
                 </div>
                 <button 

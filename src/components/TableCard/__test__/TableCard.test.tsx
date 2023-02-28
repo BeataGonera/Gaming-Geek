@@ -1,6 +1,8 @@
 import { render, screen } from '@testing-library/react'
 import { TableCard } from '../TableCard'
 
+const players = [{playerUID: '12', playerPhotoURL: '/avatar.jpeg'}, {playerUID: '137', playerPhotoURL: '/avatar.jpeg'}]
+
 
 describe('TableCard', () => {
     it('should render h3 element with text passed as prop', () => {
@@ -11,7 +13,7 @@ describe('TableCard', () => {
             description: 'This is a new game', 
             game: 'Game of Thrones',
             picture: '/avatar.jpeg',
-            players: ['freespot', 'freespot', 'freespot']
+            players: players
         }} setTableChanged={false}/>)
         const tableCardTitle = screen.getByRole('heading', {name: 'Game of Thrones'})
         expect(tableCardTitle).toBeInTheDocument();
@@ -25,7 +27,7 @@ describe('TableCard', () => {
             description: 'This is a new game', 
             game: 'Game of Thrones',
             picture: '/avatar.jpeg',
-            players: ['freespot', 'freespot', 'freespot']
+            players: players
         }} setTableChanged={false}/>)
         const tableCardDescription = screen.getByText(/This is a new game/i)
         expect(tableCardDescription).toBeInTheDocument();
@@ -39,7 +41,7 @@ describe('TableCard', () => {
             description: 'This is a new game', 
             game: 'Game of Thrones',
             picture: '/avatar.jpeg',
-            players: ['freespot', 'freespot', 'freespot']
+            players: players
         }} setTableChanged={false}/>)
         const tableCardPicture = await screen.findByRole('heading', {name: 'Game of Thrones'})
         expect(tableCardPicture).toBeInTheDocument();
@@ -53,7 +55,7 @@ describe('TableCard', () => {
             description: 'This is a new game', 
             game: 'Game of Thrones',
             picture: '/avatar.jpeg',
-            players: ['freespot', 'freespot', 'freespot']
+            players: players
         }} setTableChanged={false}/>)
         const playersAvatars = screen.queryAllByRole('img')
         expect(playersAvatars.length).toBe(4);

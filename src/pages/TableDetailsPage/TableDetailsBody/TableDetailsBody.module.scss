@@ -51,7 +51,7 @@
             }
           }
 
-          textarea{
+          .gameDescription{
             height: 70%;
             width: 100%;
             overflow: hidden;
@@ -63,13 +63,12 @@
       }
 
   button{
-  @include button-filled-basic;
-  position: absolute;
-  right: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-   
+    @include button-filled-basic;
+    position: absolute;
+    right: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
 }
 }
 

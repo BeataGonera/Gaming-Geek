@@ -1,15 +1,16 @@
-import { Table } from '../assets/Typescript/interfaces'
+import { Table, Player } from '../assets/Typescript/interfaces'
 
-export const updatePlayersArray = (tableDetails:Table | null, newPlayers: string[], photoURL: string) => {
+export const updatePlayersArray = (tableDetails:Table | null, newPlayers: Player[], userUID: string, userPhotoURL: string) => {
         
     tableDetails?.players.forEach(player => {
-        if(player !== '/avatar.jpeg'){
+        let duplicatedPlayer = newPlayers.find(object => object.playerUID === userUID)
+        if(player.playerUID == '' && duplicatedPlayer === undefined){
+            newPlayers.push({
+                playerUID: userUID,
+                playerPhotoURL: userPhotoURL
+            })
+        }else{
             newPlayers.push(player)
         }
-        else if(player === '/avatar.jpeg' && !newPlayers.includes(photoURL)){
-            newPlayers.push(photoURL)
-        }else{
-            newPlayers.push('/avatar.jpeg')
-        }
-    })    
+    })     
 }

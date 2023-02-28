@@ -5,5 +5,10 @@ export interface Table{
     description: string;
     game: string;
     picture: string;
-    players: string[];
+    players: Player[];
+}
+
+export interface Player{
+    playerUID: string;
+    playerPhotoURL: string;
 }
