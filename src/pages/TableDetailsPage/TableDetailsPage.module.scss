@@ -1,11 +1,25 @@
 @import '../../assets/sass/mixins.scss';
+@import '../../assets/sass/variables.scss';
 
 .tableDetailsPageContainer{
     background: #F5F5F5;
     width: 100vw;
     min-height: 100vh;
 
+    @media only screen and (max-width: $large) {
+        display: none;
+         }
+
     .drawerBodyMembers{
         @include drawer-body-members;
     }
+}
+
+.tableDetailsPageContainerMobile{
+    @media only screen and (max-width: $large) {
+        display: flex;
+         }
+    @media only screen and (min-width: $large) {
+        display: none;
+        }
 }

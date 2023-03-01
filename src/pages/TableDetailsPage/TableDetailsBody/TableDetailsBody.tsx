@@ -119,11 +119,8 @@ export const TableDetailsBody:FC<TableDetailsBodyProps> = ({tableKey}) => {
               </div>
              }
             { duplicatedPlayer !== undefined && <button onClick={() => RemovePlayerFromTable()}><RemoveRoundedIcon style={{marginRight: '5px'}}/>Count me out</button>}
-            { duplicatedPlayer === undefined && <button onClick={() => AddPlayerToTable()}><AddRoundedIcon style={{marginRight: '5px'}}/>Count me in</button>}
+            { duplicatedPlayer === undefined && <button onClick={() => AddPlayerToTable()}><AddRoundedIcon style={{marginRight: '5px'}}/>Join</button>}
 
-            <section>
-              <button className={styles.notificationButton}></button>
-            </section>
         </div>
      )
 }

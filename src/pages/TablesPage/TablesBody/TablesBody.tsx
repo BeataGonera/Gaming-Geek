@@ -60,6 +60,12 @@ export const TablesBody = () => {
                 onClick={()=>navigate('/add-table')}>
                     Create a new table <AddRoundedIcon style={{marginLeft: '5px'}}/>
             </button>
+
+            <button 
+                className={styles.createNewTableButtonMobile}
+                onClick={()=>navigate('/add-table')}>
+                    <AddRoundedIcon/>
+            </button>
         </div>
 
 

@@ -21,3 +21,24 @@ body {
   background: white;
   font-weight: 600;
 }
+
+.nav-link-mobile{
+  width: 100px;
+  color: white;
+  background: #5E0060;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+.active-mobile{
+  color: #5E0060;
+  background: white;
+  border-radius: 20px;
+  text-decoration: none;
+  height: 40px;
+  display: flex;
+  text-decoration: none;
+
+}

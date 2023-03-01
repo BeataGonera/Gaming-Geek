@@ -4,12 +4,19 @@
 .cardContainer{
     width: 370px;
     min-height: 235px;
+    max-height: 235px;
     box-shadow: $shadow;
     border-radius: 12px;
     border: none;
     display: grid;
     grid-template-columns: 4fr 6fr;
     grid-template-rows: 3fr 1fr;
+
+    @media only screen and (max-width: $medium) {
+       box-shadow: none;
+       border: 1px solid $grey;
+       width: 90vw;
+         }
 
     .picture{
         background: $grey;
@@ -43,7 +50,7 @@
         }
         
         div{
-            width: 185px;
+            width: 100%;
             max-height: 75px;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -85,6 +92,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
+
+            @media only screen and (max-width: $medium) {
+               display: none;
+                  }
+         
+
+
 
             // &:hover{
             //     @include button-filled-hover;

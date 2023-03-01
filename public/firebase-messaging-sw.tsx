@@ -23,8 +23,8 @@ onBackgroundMessage(messaging, (payload) => {
     // Customize notification here
     const notificationTitle = 'Background Message Title';
     const notificationOptions = {
-      body: 'Background Message body.',
-      icon: '/firebase-logo.png'
+      body: 'moja notyfikacja',
+      icon: '/dice.webp'
     };
   
     self.registration.showNotification(notificationTitle,

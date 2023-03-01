@@ -5,9 +5,17 @@
     @include body-container;
     overflow: scroll;
 
+    @media only screen and (max-width: $large) {
+      min-width: 100vw;
+      min-height: 100vh;
+       }
+
     .header{
         @include header;
-   
+        @media only screen and (max-width: $large) {
+          position: fixed;
+          background: white;
+           }
 
         h3{
           @include header-title;
@@ -21,8 +29,17 @@
       width: 100%;
       padding: 90px;
       gap: 40px;
+      min-height: fit-content;
       overflow: scroll;
 
+      @media only screen and (max-width: $medium) {
+        justify-content: center;
+        padding: 10px;
+        min-width: 100vw;
+        gap: 10px;
+        margin-top: 10vh;
+        margin-bottom: 10vh;
+        }
     }
 
       .createNewTableButton{
@@ -49,6 +66,28 @@
         &:active{
           @include button-filled-active;
       }
+
+      @media only screen and (max-width: $large) {
+        display: none;  
+       }
       }
+
+      .createNewTableButtonMobile{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        position: fixed;
+        right: 50px;
+        bottom: 100px;
+        background: $primary;
+        color: white;
+        border: none;
+
+        @media only screen and (min-width: $large) {
+          display: none;  
+         }
+      }
+
+     
 
 }
