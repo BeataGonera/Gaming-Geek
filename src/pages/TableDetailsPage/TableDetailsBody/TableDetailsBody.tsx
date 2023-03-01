@@ -93,6 +93,16 @@ export const TableDetailsBody:FC<TableDetailsBodyProps> = ({tableKey}) => {
       }     
   }
 
+  const sendNotification = () => {
+    Notification.requestPermission()
+      .then((perm) => {
+        if(perm === 'granted'){
+          console.log(perm)
+          new Notification('Player has sent you a message')
+        }
+      })
+  }
+
 
 
     return ( 
@@ -122,6 +132,10 @@ export const TableDetailsBody:FC<TableDetailsBodyProps> = ({tableKey}) => {
              }
             { duplicatedPlayer !== undefined && <button onClick={() => RemovePlayerFromTable()}><RemoveRoundedIcon style={{marginRight: '5px'}}/>Count me out</button>}
             { duplicatedPlayer === undefined && <button onClick={() => AddPlayerToTable()}><AddRoundedIcon style={{marginRight: '5px'}}/>Count me in</button>}
+
+            <section>
+              <button className={styles.notificationButton} onClick={() => sendNotification()}></button>
+            </section>
         </div>
      )
 }
