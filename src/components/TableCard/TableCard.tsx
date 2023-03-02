@@ -11,6 +11,7 @@ import { updatePlayersArrayAdd } from '../../functions/updatePlayersArrayAdd'
 import { updatePlayersArrayRemove } from '../../functions/updatePlayersArrayRemove'
 
 
+
 interface CardProps{
     table: Table;
     setTableChanged: any;

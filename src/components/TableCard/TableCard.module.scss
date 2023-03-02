@@ -74,6 +74,7 @@
         .playersContainer{
             width: 50%;
             display: flex;
+            flex-wrap: wrap;
             align-items: center;
             justify-content: start;
             padding-left: 10px;
@@ -83,6 +84,11 @@
                 width: 30px;
                 height: 30px;
                 border-radius: 50%;
+            }
+
+            div{
+                width: 100%;
+                border-bottom: 1px solid $grey;
             }
         }
 

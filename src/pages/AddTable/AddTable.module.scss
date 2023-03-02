@@ -6,9 +6,23 @@
     background: $greyBackground;
     width: 100vw;
     min-height: 100vh;
+
+    @media only screen and (max-width: $large) {
+        display: none;
+         }
+
+    .drawerBodyMembers{
+        @include drawer-body-members;    
+        }
 }
 
-.drawerBodyMembers{
-    @include drawer-body-members;
-    
+
+
+.addTablePageContainerMobile{
+    @media only screen and (max-width: $large) {
+        display: flex;
+         }
+    @media only screen and (min-width: $large) {
+        display: none;
+        }
 }

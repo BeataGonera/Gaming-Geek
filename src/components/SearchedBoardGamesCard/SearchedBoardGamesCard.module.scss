@@ -2,7 +2,7 @@
 @import '../../assets/sass/variables.scss';
 
 .cardContainer{
-    width: 370px;
+    min-width: 370px;
     height: 235px;
     box-shadow: $shadow;
     border-radius: 12px;
@@ -10,6 +10,10 @@
     display: grid;
     grid-template-columns: 4fr 6fr;
     grid-template-rows: 3fr 1fr;
+
+    @media only screen and (max-width: $large) {
+        width: 100%;
+    }
 
     .picture{
         background: $grey;
@@ -43,9 +47,11 @@
         div{
             width: 185px;
             max-height: 75px;
-            overflow: hidden;
-            text-overflow: ellipsis;
             font-size: 13px;
+
+            @media only screen and (max-width: $large) {
+                width: 100%;
+            }
         }
     }
 
@@ -60,10 +66,15 @@
         .playersContainer{
             width: 50%;
             display: flex;
+            flex-wrap: wrap;
             align-items: center;
             justify-content: start;
             padding-left: 10px;
             gap: 10px;
+
+            @media only screen and (max-width: $large) {
+                padding: 10px;
+            }
 
             img{
                 width: 30px;
