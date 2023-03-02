@@ -4,6 +4,7 @@ import { Drawer } from '../../components/Drawer/Drawer'
 import { AddTableBody } from '../AddTable/AddTableBody/AddTableBody'
 import { MembersContainer } from '../../components/MembersContainer/MembersContainer' 
 import { BottomNavigation } from '../../components/BottomNavigation/BottomNavigation'
+import { NavBarMobile } from '../../components/NavBarMobile/NavBarMobile'
 
 export const AddTable = () => {
     return ( 
@@ -18,8 +19,9 @@ export const AddTable = () => {
         </div>
 
         <div className={styles.addTablePageContainerMobile}>
-            <BottomNavigation/>
+            <NavBarMobile/>
             <AddTableBody/>
+            <BottomNavigation/>
         </div>
         </div>
      );

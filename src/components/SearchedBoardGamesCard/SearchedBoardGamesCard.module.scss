@@ -2,7 +2,7 @@
 @import '../../assets/sass/variables.scss';
 
 .cardContainer{
-    min-width: 370px;
+    width: 370px;
     height: 235px;
     box-shadow: $shadow;
     border-radius: 12px;
@@ -71,10 +71,8 @@
             justify-content: start;
             padding-left: 10px;
             gap: 10px;
-
-            @media only screen and (max-width: $large) {
-                padding: 10px;
-            }
+            padding: 10px;
+         
 
             img{
                 width: 30px;

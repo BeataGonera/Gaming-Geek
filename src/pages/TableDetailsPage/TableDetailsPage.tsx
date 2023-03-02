@@ -5,6 +5,7 @@ import styles from '../TableDetailsPage/TableDetailsPage.module.scss'
 import { TableDetailsBody } from './TableDetailsBody/TableDetailsBody'
 import { useParams } from 'react-router-dom'
 import { BottomNavigation } from '../../components/BottomNavigation/BottomNavigation'
+import { NavBarMobile } from '../../components/NavBarMobile/NavBarMobile'
 
 
 
@@ -24,8 +25,10 @@ export const TableDetails = () => {
             </div>
 
             <div className={styles.tableDetailsPageContainerMobile}>
-                <BottomNavigation/>
+                <NavBarMobile/>
                 <TableDetailsBody tableKey={tableKey}/>
+                <BottomNavigation/>
+
             </div>
         </div>
     )

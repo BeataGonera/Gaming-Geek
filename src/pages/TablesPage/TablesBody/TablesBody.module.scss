@@ -14,8 +14,9 @@
         @include header;
         @media only screen and (max-width: $large) {
           position: fixed;
+          top: 8vh;
           background: white;
-           }
+        }
 
         h3{
           @include header-title;

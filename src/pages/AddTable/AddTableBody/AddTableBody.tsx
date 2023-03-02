@@ -27,7 +27,7 @@ export const AddTableBody = () => {
                         <SearchedBoardGamesCard fetchedGame={fetchedGame} key={index}/>
                     ))} 
                     {isPending && (
-                        <CircularProgress size={80} sx={{color: "#5E0060", position: "relative", top: "200px", left:'50%'}}/>
+                        <CircularProgress className={styles.circularProgress}/>
                     )}
                     {error && <p>Something went wrong...</p>}
                 </div>

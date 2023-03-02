@@ -4,6 +4,7 @@ import { NavBar } from "../../components/NavBar/NavBar"
 import { TablesBody } from './TablesBody/TablesBody'
 import { MembersContainer } from '../../components/MembersContainer/MembersContainer'
 import { BottomNavigation } from '../../components/BottomNavigation/BottomNavigation'
+import { NavBarMobile } from '../../components/NavBarMobile/NavBarMobile'
 
 export const TablesPage = () => {
 
@@ -19,8 +20,9 @@ export const TablesPage = () => {
             </div>
 
             <div className={styles.tablesPageContainerMobile}>
-                <BottomNavigation/>
+                <NavBarMobile/>
                 <TablesBody/>
+                <BottomNavigation/>
             </div>
         </div>
         
