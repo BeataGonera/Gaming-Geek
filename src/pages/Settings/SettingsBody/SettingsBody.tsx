@@ -18,7 +18,7 @@ export const SettingsBody = () => {
             </div>
 
             <div className={styles.settingsContent}>
-                <p>Change avatar - drop an image below or choose file</p>
+                <p className={styles.innstruction}>Change avatar</p>
                 <AvatarEdit/>
             </div>
         </div>

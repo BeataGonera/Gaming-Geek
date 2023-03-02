@@ -12,7 +12,7 @@ export const NavBarMobile = () => {
                 <div className={styles.navBarMobileWrapper}>
                     <img src='/dice.webp' onClick={() => navigate('/tables') }/>
                     <div>Gaming Geek</div>
-                    <div><MenuRoundedIcon/></div>
+                    <div className={styles.hamburger}><MenuRoundedIcon/></div>
                 </div>
             </div>
         </div>

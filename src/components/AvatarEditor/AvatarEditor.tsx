@@ -90,9 +90,9 @@ export const AvatarEdit: React.FC = () => {
                 ref={editorRef}
                 color={[200, 200, 200, 0.6]}
                 scale={scale}
-                width={250}
+                width={150}
                 crossOrigin="anonymous"
-                height={250}
+                height={150}
                 image={originalImage}
                 position={position}
                 onPositionChange={handlePositionChange}

@@ -6,7 +6,20 @@
     height: 100vh;
     background: $greyBackground;
 
+    @media only screen and (max-width: $large) {
+        display: none;
+         }
+
     .drawerBodyMembers{
         @include drawer-body-members;
     }
+}
+
+.settingsPageContainerMobile{
+    @media only screen and (max-width: $large) {
+        display: flex;
+         }
+    @media only screen and (min-width: $large) {
+        display: none;
+        }
 }

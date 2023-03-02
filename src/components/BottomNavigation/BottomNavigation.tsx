@@ -2,6 +2,7 @@ import styles from '../BottomNavigation/BottomNavigation.module.scss'
 import { NavLink } from 'react-router-dom'
 import TableRestaurantRoundedIcon from '@mui/icons-material/TableRestaurantRounded'
 import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded'
+import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 
 export const BottomNavigation = () => {
     return (
@@ -18,11 +19,11 @@ export const BottomNavigation = () => {
 
             <NavLink 
                 className= {({ isActive }) => (isActive ? "nav-link-mobile active-mobile" : "nav-link-mobile")} 
-                to="/" end
+                to="/settings" end
                 >
                 <div className={styles.bottomNavigationButton}>
-                    <CalendarMonthRoundedIcon/>
-                    <div>Events</div>
+                    <SettingsRoundedIcon/>
+                    <div>Settings</div>
                 </div>
             </NavLink>
         </nav>
