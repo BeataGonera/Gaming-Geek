@@ -5,6 +5,9 @@ import { TablesBody } from './TablesBody/TablesBody'
 import { MembersContainer } from '../../components/MembersContainer/MembersContainer'
 import { BottomNavigation } from '../../components/BottomNavigation/BottomNavigation'
 import { NavBarMobile } from '../../components/NavBarMobile/NavBarMobile'
+import { getRedirectResult } from 'firebase/auth'
+import { auth } from '../../firebase/config'
+import { GoogleAuthProvider } from 'firebase/auth'
 
 export const TablesPage = () => {
 

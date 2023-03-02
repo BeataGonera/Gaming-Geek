@@ -1,10 +1,11 @@
-import styles from './Signup.module.scss';
-import TextField from '@mui/material/TextField';
-import FormControl from '@mui/material/FormControl';
-import Divider from '@mui/material/Divider';
-import { useSignup } from '../../hooks/useSignup';
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import styles from './Signup.module.scss'
+import TextField from '@mui/material/TextField'
+import FormControl from '@mui/material/FormControl'
+import Divider from '@mui/material/Divider'
+import { useSignup } from '../../hooks/useSignup'
+import React, { useState } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
+import { useSignInWithGoogle } from '../../hooks/useSignInWithGoogle'
 
 
 
@@ -14,11 +15,17 @@ export const Signup = () => {
     const [password, setPassword] = useState('')
     const [displayName, setDisplayName] = useState('')
     const {error, isPending, signup} = useSignup()
+    const {signInWithGoogle} = useSignInWithGoogle()
     const navigate = useNavigate()
+
 
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault()
         signup(email, password, displayName)
+    }
+
+    const signUpWithGoogle = async () => {
+        signInWithGoogle()
     }
 
     return ( 
@@ -59,7 +66,7 @@ export const Signup = () => {
                         {!isPending && 
                         <button className={styles.signupButton} onClick={handleSubmit}>Sign up</button>
                         }
-                        <button className={styles.signupButton}>Sign up with Google</button>
+                        <button className={styles.signupButton} onClick={signUpWithGoogle}>Sign up with Google</button>
                         <div className={styles.signInLink}>Already have an account? <Link to='/signin'>Sign in.</Link></div>
                         {error && <div className={styles.error}>{error}</div>}
                     </FormControl>

@@ -28,7 +28,7 @@
     @media only screen and (max-width: $medium) {
         flex-direction: column-reverse; 
         left: 3%;  
-        gap: 7vh;
+        gap: 2vh;
         }
 
     .signupFormContainer{
@@ -93,8 +93,9 @@
             margin-bottom: 70px;
 
             @media only screen and (max-width: $medium) {
-                font-size: 32px; 
+                font-size: 28px; 
                 text-align: center; 
+                margin-bottom: 10px;
             }
         }  
     }

@@ -5,13 +5,16 @@ import Divider from '@mui/material/Divider'
 import { useSignin } from '../../hooks/useSignin'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useSignInWithGoogle } from '../../hooks/useSignInWithGoogle'
 
 
 export const Login = () => {
 
-   const [email, setEmail] = useState('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const {error, isPending, signin} = useSignin()
+    const {signInWithGoogle} = useSignInWithGoogle()
+
 
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault()
@@ -47,7 +50,7 @@ export const Login = () => {
                         {!isPending && 
                         <button className={styles.signinButton} onClick={handleSubmit}>Sign in</button>
                         }
-                        <button className={styles.signinButton}>Sign in with Google</button>
+                        <button className={styles.signinButton} onClick={() => signInWithGoogle()}>Sign in with Google</button>
                         <div className={styles.signupLink}>Don't have an account yet? <Link to='/'>Sign up.</Link></div>
                         {error && <div className={styles.error}>{error}</div>}
                     </FormControl>
